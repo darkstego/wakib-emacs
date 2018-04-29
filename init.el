@@ -9,7 +9,6 @@
 (setq debug-on-error t)
 
 (add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
-(add-to-list 'load-path "/home/bubshait/code/emacs/wakib-mode")
 
 (require 'wakib-mode)
 (wakib-mode 1)
