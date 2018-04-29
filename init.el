@@ -51,6 +51,8 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
+(use-package diminish)
+
 ;; -------------------
 ;; Theme
 ;; -------------------
@@ -65,6 +67,29 @@
   :bind
   (("C-x g" . magit-status )))
 
+;; -------------------
+;; Ivy
+;; -------------------
+(use-package ivy
+  :diminish ivy-mode
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-count-format ""))
+
+;; -------------------
+;; Projectile
+;; -------------------
+(use-package projectile
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :config
+  (setq projectile-completion-system 'ivy))
+
+
+(use-package company               
+  :diminish company-mode)
 
 ;; -------------------
 ;; expand-region
@@ -98,14 +123,20 @@
 ;; Setup Splash Screen
 (setq inhibit-startup-screen t)
 
+(tool-bar-mode -1)
 
-(provide 'init)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (moe-theme use-package))))
+ '(ansi-color-names-vector
+   ["#303030" "#ff4b4b" "#d7ff5f" "#fce94f" "#5fafd7" "#d18aff" "#afd7ff" "#c6c6c6"])
+ '(custom-safe-themes
+   (quote
+    ("291588d57d863d0394a0d207647d9f24d1a8083bb0c9e8808280b46996f3eb83" "eecacf3fb8efc90e6f7478f6143fd168342bbfa261654a754c7d47761cec07c8" default)))
+ '(package-selected-packages (quote (dracula-theme moe-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
