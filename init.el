@@ -85,6 +85,7 @@
 
 (use-package counsel
   :diminish counsel-mode
+  :disabled
   :config
   (counsel-mode 1))
 
@@ -95,7 +96,8 @@
 ;; doesn't handle wakib C-d keymaps
 (use-package projectile
   :config
-  (setq projectile-completion-system 'ivy))
+  (setq projectile-completion-system 'ivy)
+  (projectile-global-mode))
 
 ;; -------------------
 ;; expand-region
@@ -119,7 +121,6 @@
 ;; TODO (built into emacs, check performance hit if worth it)
 
 
-
 (use-package quickrun
   :config
   (setq quickrun-focus-p nil)
@@ -134,11 +135,19 @@
 (electric-pair-mode 1)
 ;; TODO - MOVE Electric Pair Mode to user local
 
+
+;; MAJOR MODES
+
+(use-package markdown-mode
+  :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
+
+
+
 ;; Setup Splash Screen
 (setq inhibit-startup-screen t)
 
 (tool-bar-mode -1)
-
+(delete-selection-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
