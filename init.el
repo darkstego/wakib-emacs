@@ -51,6 +51,10 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
+;; Let use-package work with 
+
+
+
 (use-package diminish)
 
 ;; -------------------
@@ -78,18 +82,27 @@
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format ""))
 
+(use-package counsel
+  :diminish counsel-mode
+  :config
+  (counsel-mode 1))
+
 ;; -------------------
 ;; Projectile
 ;; -------------------
+;; No deferred loading as bind-keymap
+;; doesn't handle wakib C-d keymaps
 (use-package projectile
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
   :config
   (setq projectile-completion-system 'ivy))
 
-
+;; -------------------
+;; expand-region
+;; -------------------
 (use-package company               
-  :diminish company-mode)
+  :diminish company-mode
+  :config
+  (global-company-mode 1))
 
 ;; -------------------
 ;; expand-region
@@ -136,7 +149,9 @@
  '(custom-safe-themes
    (quote
     ("291588d57d863d0394a0d207647d9f24d1a8083bb0c9e8808280b46996f3eb83" "eecacf3fb8efc90e6f7478f6143fd168342bbfa261654a754c7d47761cec07c8" default)))
- '(package-selected-packages (quote (dracula-theme moe-theme use-package))))
+ '(package-selected-packages
+   (quote
+    (rebinder ivy-historian package-lint dracula-theme moe-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
