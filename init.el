@@ -9,6 +9,7 @@
 (setq debug-on-error t)
 
 (add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "wakib" user-emacs-directory))
 
 (require 'wakib-mode)
 (wakib-mode 1)
