@@ -20,7 +20,6 @@ To install, clone this repo and its submodules to  `~/.emacs.d`.
 If you would like to save your old configuration make sure to
 back up your `~/.emacs.d` by moving or renaming it.
 
-
 ```
 git clone --recursive https://github.com/darkstego/wakib.d.git ~/.emacs.d
 ```

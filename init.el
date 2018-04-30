@@ -11,6 +11,8 @@
 (add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "wakib" user-emacs-directory))
 
+
+;; TODO move wakib to global keymap
 (require 'wakib-mode)
 (wakib-mode 1)
 
@@ -18,11 +20,11 @@
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;;----------------------------------------------------------------------------
-;(let ((normal-gc-cons-threshold (* 20 1024 1024))
-;      (init-gc-cons-threshold (* 128 1024 1024)))
-;  (setq gc-cons-threshold init-gc-cons-threshold) 
-;  (add-hook 'after-init-hook		
-					;            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+;;(let ((normal-gc-cons-threshold (* 20 1024 1024))
+;;      (init-gc-cons-threshold (* 128 1024 1024)))
+;;  (setq gc-cons-threshold init-gc-cons-threshold) 
+;;  (add-hook 'after-init-hook		
+;;            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 (setq gc-cons-threshold (* 20 1024 1024))
 
 
@@ -51,9 +53,6 @@
 (eval-when-compile
   (require 'use-package))
 (setq use-package-always-ensure t)
-
-;; Let use-package work with 
-
 
 
 (use-package diminish)
@@ -95,6 +94,7 @@
 ;; No deferred loading as bind-keymap
 ;; doesn't handle wakib C-d keymaps
 (use-package projectile
+  :diminish projectile-mode
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-global-mode))
@@ -145,6 +145,14 @@
 
 ;; Setup Splash Screen
 (setq inhibit-startup-screen t)
+(setq-default major-mode 'org-mode)
+(setq initial-buffer-choice
+      (lambda ()
+	(let ((buffer (generate-new-buffer "untitled")))
+	  (set-buffer-major-mode buffer)
+	  buffer)))
+(setq-default initial-scratch-message ";; Emacs elisp scratch buffer. Happy hacking.\n\n")
+
 
 (tool-bar-mode -1)
 (delete-selection-mode 1)
