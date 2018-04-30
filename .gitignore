@@ -1,5 +1,4 @@
 /local/*
-!/local/.keep
 /auto-save-list/*
 /elpa/*
 /session.*
