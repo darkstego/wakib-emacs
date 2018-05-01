@@ -8,8 +8,9 @@
 
 (setq debug-on-error t)
 
-(add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "wakib" user-emacs-directory))
+(nconc load-path
+       (list (expand-file-name "local" user-emacs-directory)
+	     (expand-file-name "wakib" user-emacs-directory)))
 
 
 ;; TODO move wakib to global keymap
