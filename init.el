@@ -69,7 +69,17 @@
 ;; -------------------
 (use-package magit
   :bind
-  (("C-x g" . magit-status )))
+  (("C-x g" . magit-status ))
+  :config
+  (defun with-editor-usage-message ()
+  ;; Run after `server-execute', which is run using
+  ;; a timer which starts immediately.
+  (run-with-timer
+   0.01 nil `(lambda ()
+               (with-current-buffer ,(current-buffer)
+                 (message  "\
+Type C-d C-c to finish, \
+or C-d C-k to cancel"))))))
 
 ;; -------------------
 ;; Ivy
