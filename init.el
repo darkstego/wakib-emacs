@@ -82,6 +82,12 @@
 Type C-d C-c to finish, \
 or C-d C-k to cancel"))))))
 
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+  (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
+    
+
 ;; -------------------
 ;; Ivy
 ;; -------------------
