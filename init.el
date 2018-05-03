@@ -126,7 +126,13 @@ or C-d C-k to cancel"))))))
 ;; -------------------
 (use-package expand-region
   :commands er/expand-region
-  :bind ("C-S-a" . er/expand-region))
+  :bind ("M-S-a" . er/expand-region))
+
+;; -------------------
+;; avy
+;; -------------------
+(use-package avy
+  :bind ("M-m" . avy-goto-char-2))
 
 ;; -------------------
 ;; uniquify
@@ -160,11 +166,7 @@ or C-d C-k to cancel"))))))
 ;; Setup Splash Screen
 (setq inhibit-startup-screen t)
 (setq-default major-mode 'org-mode)
-(setq initial-buffer-choice
-      (lambda ()
-	(let ((buffer (generate-new-buffer "untitled")))
-	  (set-buffer-major-mode buffer)
-	  buffer)))
+(setq initial-buffer-choice 'wakib-new-empty-buffer)
 (setq-default initial-scratch-message ";; Emacs elisp scratch buffer. Happy hacking.\n\n")
 
 
