@@ -2,11 +2,6 @@
 
 (setq debug-on-error t)
 
-(nconc load-path
-       (list (expand-file-name "local" user-emacs-directory)
-	     (expand-file-name "wakib" user-emacs-directory)))
-
-
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;;----------------------------------------------------------------------------
@@ -16,6 +11,21 @@
 ;;  (add-hook 'after-init-hook		
 ;;            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 (setq gc-cons-threshold (* 20 1024 1024))
+
+
+;; ---------------------
+;; Initial Setup
+;; ---------------------
+
+(nconc load-path
+       (list (expand-file-name "local" user-emacs-directory)
+	     (expand-file-name "wakib" user-emacs-directory)))
+
+;; Might cause performance issues
+(advice-add 'substitute-command-keys :around #'wakib-substitute-command-keys)
+
+(tool-bar-mode -1)
+(delete-selection-mode 1)
 
 
 ;; -----------------------
@@ -66,18 +76,19 @@
 ;; -------------------
 (use-package magit
   :bind
-  (("C-x g" . magit-status ))
-  :config
+  (("C-x g" . magit-status )))
+
+;;  :config
   ;; Redefine methods to overwrite C-c with C-d
-  (defun with-editor-usage-message ()
+;;  (defun with-editor-usage-message ()
   ;; Run after `server-execute', which is run using
   ;; a timer which starts immediately.
-  (run-with-timer
-   0.01 nil `(lambda ()
-               (with-current-buffer ,(current-buffer)
-                 (message  "\
-Type C-d C-c to finish, \
-or C-d C-k to cancel"))))))
+;;  (run-with-timer
+;;   0.01 nil `(lambda ()
+;;               (with-current-buffer ,(current-buffer)
+;;                 (message  "\
+;;Type C-d C-c to finish, \
+;;or C-d C-k to cancel")))))
 
 (use-package exec-path-from-shell
   :config
@@ -144,6 +155,32 @@ or C-d C-k to cancel"))))))
 (use-package quickrun
   :config
   (setq quickrun-focus-p nil)
+  (defun quickrun--pop-to-buffer (buf cb)
+    (let ((win (selected-window)))
+      (pop-to-buffer buf)
+      (funcall cb)
+      (end-of-buffer)
+      (unless quickrun-focus-p
+	(select-window win))))
+  (defun quickrun--send-to-shell (cmd-lst)
+  (window-configuration-to-register :quickrun-shell)
+  (let ((buf (get-buffer quickrun--buffer-name))
+        (win (selected-window)))
+    (pop-to-buffer buf)
+    (let ((cmd-str (quickrun--concat-commands cmd-lst))
+          (eshell-buf (get-buffer quickrun--eshell-buffer-name))
+          (eshell-buffer-name quickrun--eshell-buffer-name)
+          (eshell-banner-message ""))
+      (when eshell-buf
+        (kill-buffer eshell-buf))
+      (eshell)
+      (kill-buffer quickrun--buffer-name)
+      (setq-local quickrun--shell-last-command cmd-str)
+      (add-hook 'eshell-post-command-hook 'quickrun--eshell-post-hook)
+      (quickrun--insert-command cmd-str)
+      (end-of-buffer)
+      (unless quickrun-focus-p
+        (select-window win)))))
   :bind
   (([f8] . quickrun )))
 
@@ -168,10 +205,6 @@ or C-d C-k to cancel"))))))
 (setq-default major-mode 'org-mode)
 (setq initial-buffer-choice 'wakib-new-empty-buffer)
 (setq-default initial-scratch-message ";; Emacs elisp scratch buffer. Happy hacking.\n\n")
-
-
-(tool-bar-mode -1)
-(delete-selection-mode 1)
 
 (setq custom-file (expand-file-name "custom" user-emacs-directory))
 (load custom-file t t)
