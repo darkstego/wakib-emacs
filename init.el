@@ -14,18 +14,15 @@
 
 
 ;; ---------------------
-;; Initial Setup
+;; Setup Load Path
 ;; ---------------------
 
 (nconc load-path
        (list (expand-file-name "local" user-emacs-directory)
 	     (expand-file-name "wakib" user-emacs-directory)))
 
-;; Might cause performance issues
-(advice-add 'substitute-command-keys :around #'wakib-substitute-command-keys)
 
-(tool-bar-mode -1)
-(delete-selection-mode 1)
+
 
 
 ;; -----------------------
@@ -53,8 +50,6 @@
 (eval-when-compile
   (require 'use-package))
 (setq use-package-always-ensure t)
-
-
 (use-package diminish)
 
 ;; -------------------
@@ -62,6 +57,43 @@
 ;; -------------------
 (require 'wakib-mode)
 (wakib-global-mode)
+
+
+;; -------------------
+;; Initial Setup
+;; -------------------
+(tool-bar-mode -1)
+(delete-selection-mode 1)
+(unless (display-graphic-p)
+  (menu-bar-mode -1))
+;; Might cause performance issues
+(advice-add 'substitute-command-keys :around #'wakib-substitute-command-keys)
+
+;; Menu Bars
+(bind-key [menu-bar file new-file]
+	  `(menu-item "New File..." wakib-new-empty-buffer :enable (menu-bar-non-minibuffer-window-p)
+		      :help "Create a new blank buffer"
+		      :key-sequence ,(kbd "C-n")))
+
+(bind-key [menu-bar file open-file]
+	  `(menu-item "Open File..." find-file :enable (menu-bar-non-minibuffer-window-p)
+		      :help "Read an existing or new file from disk"
+		      :key-sequence ,(kbd "C-o")))
+
+(bind-key [menu-bar file dired]
+	  `(menu-item "Open Directory..." dired :enable (menu-bar-non-minibuffer-window-p)
+		      :help "Browse a directory, to operate on its files"
+		      :keys "C-e d"))
+
+(bind-key [menu-bar file insert-file]
+	  `(menu-item "Insert File..." insert-file :enable (menu-bar-non-minibuffer-window-p)
+		      :help "Insert another file into current buffer"
+		      :keys "C-e i"))
+
+
+
+
+
 
 
 ;; -------------------
@@ -91,6 +123,7 @@
 ;;or C-d C-k to cancel")))))
 
 (use-package exec-path-from-shell
+  :disabled
   :config
   (exec-path-from-shell-copy-env "SSH_AGENT_PID")
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
@@ -198,6 +231,11 @@
 (use-package markdown-mode
   :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
 
+
+(use-package org
+  :config
+  (bind-key (kbd "M-e") nil org-mode-map)
+  (bind-key (kbd "C-e") nil org-mode-map))
 
 
 ;; Setup Splash Screen
