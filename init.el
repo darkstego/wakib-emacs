@@ -170,7 +170,7 @@
 ;; -------------------
 (use-package expand-region
   :commands er/expand-region
-  :bind ("M-S-a" . er/expand-region))
+  :bind ("M-A" . er/expand-region))
 
 ;; -------------------
 ;; avy
