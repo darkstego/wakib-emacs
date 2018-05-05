@@ -179,6 +179,13 @@
   :bind ("M-m" . avy-goto-char-2))
 
 ;; -------------------
+;; which-key
+;; -------------------
+(use-package which-key
+  :config
+  (which-key-mode))
+
+;; -------------------
 ;; uniquify
 ;; -------------------
 
