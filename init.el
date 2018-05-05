@@ -188,32 +188,10 @@
 (use-package quickrun
   :config
   (setq quickrun-focus-p nil)
-  (defun quickrun--pop-to-buffer (buf cb)
-    (let ((win (selected-window)))
-      (pop-to-buffer buf)
-      (funcall cb)
-      (end-of-buffer)
-      (unless quickrun-focus-p
-	(select-window win))))
-  (defun quickrun--send-to-shell (cmd-lst)
-  (window-configuration-to-register :quickrun-shell)
-  (let ((buf (get-buffer quickrun--buffer-name))
-        (win (selected-window)))
-    (pop-to-buffer buf)
-    (let ((cmd-str (quickrun--concat-commands cmd-lst))
-          (eshell-buf (get-buffer quickrun--eshell-buffer-name))
-          (eshell-buffer-name quickrun--eshell-buffer-name)
-          (eshell-banner-message ""))
-      (when eshell-buf
-        (kill-buffer eshell-buf))
-      (eshell)
-      (kill-buffer quickrun--buffer-name)
-      (setq-local quickrun--shell-last-command cmd-str)
-      (add-hook 'eshell-post-command-hook 'quickrun--eshell-post-hook)
-      (quickrun--insert-command cmd-str)
-      (end-of-buffer)
-      (unless quickrun-focus-p
-        (select-window win)))))
+  (defun quickrun--recenter (arg)
+  (with-selected-window (get-buffer-window quickrun--buffer-name)
+    (recenter arg)
+    (end-of-buffer)))
   :bind
   (([f8] . quickrun )))
 
