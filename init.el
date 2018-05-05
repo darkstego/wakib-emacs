@@ -126,7 +126,7 @@ or C-d C-k to cancel"))))))
 ;; -------------------
 (use-package expand-region
   :commands er/expand-region
-  :bind ("M-S-a" . er/expand-region))
+  :bind ("M-A" . er/expand-region))
 
 ;; -------------------
 ;; avy
@@ -144,6 +144,10 @@ or C-d C-k to cancel"))))))
 (use-package quickrun
   :config
   (setq quickrun-focus-p nil)
+  (defun quickrun--recenter (arg)
+  (with-selected-window (get-buffer-window quickrun--buffer-name)
+    (recenter arg)
+    (end-of-buffer)))
   :bind
   (([f8] . quickrun )))
 
