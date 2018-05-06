@@ -1,15 +1,8 @@
 ;; -*- lexical-binding: t -*-
 
-(setq debug-on-error t)
-
 ;;----------------------------------------------------------------------------
-;; Adjust garbage collection thresholds during startup, and thereafter
+;; Adjust garbage collection
 ;;----------------------------------------------------------------------------
-;;(let ((normal-gc-cons-threshold (* 20 1024 1024))
-;;      (init-gc-cons-threshold (* 128 1024 1024)))
-;;  (setq gc-cons-threshold init-gc-cons-threshold) 
-;;  (add-hook 'after-init-hook		
-;;            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 (setq gc-cons-threshold (* 20 1024 1024))
 
 
@@ -20,9 +13,6 @@
 (nconc load-path
        (list (expand-file-name "local" user-emacs-directory)
 	     (expand-file-name "wakib" user-emacs-directory)))
-
-
-
 
 
 ;; -----------------------
@@ -56,7 +46,8 @@
 ;; Wakib
 ;; -------------------
 (require 'wakib-mode)
-(wakib-global-mode)
+(wakib-mode 1)
+(diminish 'wakib-mode)
 
 
 ;; -------------------
@@ -92,10 +83,6 @@
 
 
 
-
-
-
-
 ;; -------------------
 ;; Theme
 ;; -------------------
@@ -110,17 +97,7 @@
   :bind
   (("C-x g" . magit-status )))
 
-;;  :config
-  ;; Redefine methods to overwrite C-c with C-d
-;;  (defun with-editor-usage-message ()
-  ;; Run after `server-execute', which is run using
-  ;; a timer which starts immediately.
-;;  (run-with-timer
-;;   0.01 nil `(lambda ()
-;;               (with-current-buffer ,(current-buffer)
-;;                 (message  "\
-;;Type C-d C-c to finish, \
-;;or C-d C-k to cancel")))))
+
 
 (use-package exec-path-from-shell
   :disabled
@@ -138,13 +115,17 @@
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
-  (setq ivy-count-format ""))
+  (setq ivy-count-format "")
+  (setq ivy-initial-inputs-alist nil))
 
 (use-package counsel
   :diminish counsel-mode
-  :disabled
   :config
   (counsel-mode 1))
+
+(use-package smex)
+  ;; :config
+  ;; (global-set-key [remap execute-extended-command] 'smex))
 
 ;; -------------------
 ;; Projectile
@@ -182,6 +163,7 @@
 ;; which-key
 ;; -------------------
 (use-package which-key
+  :diminish which-key-mode
   :config
   (which-key-mode))
 
