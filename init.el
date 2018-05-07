@@ -48,7 +48,7 @@
 (require 'wakib-mode)
 (wakib-mode 1)
 (diminish 'wakib-mode)
-
+(add-hook 'after-change-major-mode-hook 'wakib-update-major-mode-map)
 
 ;; -------------------
 ;; Initial Setup
@@ -137,6 +137,8 @@
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-global-mode))
+;;(projectile-project-p)
+
 
 ;; -------------------
 ;; expand-region
