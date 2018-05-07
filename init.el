@@ -136,7 +136,8 @@
   :diminish projectile-mode
   :config
   (setq projectile-completion-system 'ivy)
-  (projectile-global-mode))
+  (projectile-global-mode)
+  (wakib-update-menu-map (global-key-binding [menu-bar tools Projectile]) projectile-command-map "C-d p"))
 ;;(projectile-project-p)
 
 
