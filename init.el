@@ -54,13 +54,22 @@
 ;; Initial Setup
 ;; -------------------
 (tool-bar-mode -1)
-(delete-selection-mode 1)
 (unless (display-graphic-p)
   (menu-bar-mode -1))
-;; Might cause performance issues
+
+(cua-selection-mode 1)
+;;(define-key cua--rectangle-keymap (kbd "ESC") nil)
+(define-key cua-global-keymap (kbd "<C-return>") nil)
+(define-key cua-global-keymap (kbd "C-x SPC") 'cua-rectangle-mark-mode)
+
 (advice-add 'substitute-command-keys :around #'wakib-substitute-command-keys)
 
+
+
+
+
 ;; Menu Bars
+;; TODO - Change bind-key to define-key
 (bind-key [menu-bar file new-file]
 	  `(menu-item "New File..." wakib-new-empty-buffer :enable (menu-bar-non-minibuffer-window-p)
 		      :help "Create a new blank buffer"
@@ -81,6 +90,7 @@
 		      :help "Insert another file into current buffer"
 		      :keys "C-e i"))
 
+(global-unset-key [menu-bar options cua-mode])
 
 
 ;; -------------------
@@ -114,18 +124,18 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
+  (define-key ivy-minibuffer-map [remap keyboard-quit] 'minibuffer-keyboard-quit)
+;;  (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "")
   (setq ivy-initial-inputs-alist nil))
 
 (use-package counsel
   :diminish counsel-mode
   :config
-  (counsel-mode 1))
+  (counsel-mode 1)
+  (define-key wakib-overriding-mode-map (kbd "C-S-v") 'counsel-yank-pop))
 
 (use-package smex)
-  ;; :config
-  ;; (global-set-key [remap execute-extended-command] 'smex))
 
 ;; -------------------
 ;; Projectile
@@ -136,9 +146,17 @@
   :diminish projectile-mode
   :config
   (setq projectile-completion-system 'ivy)
-  (projectile-global-mode)
-  (wakib-update-menu-map (global-key-binding [menu-bar tools Projectile]) projectile-command-map "C-d p"))
-;;(projectile-project-p)
+  (define-key projectile-mode-map (kbd "C-c p") nil)
+  (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
+  (projectile-mode 1)
+  (wakib-update-menu-map (global-key-binding [menu-bar tools Projectile])
+			 projectile-command-map "C-e p")
+  (define-key wakib-mode-map [menu-bar project]
+	    `(menu-item ,"Project" ,(global-key-binding [menu-bar tools Projectile])
+			:visible (projectile-project-p)))
+  (define-key wakib-mode-map [menu-bar project seperator1] `(menu-item ,"--" nil))
+  (define-key wakib-mode-map [menu-bar project git] `(menu-item ,"Git ..." magit-status))
+  (global-unset-key [menu-bar tools Projectile]))
 
 
 ;; -------------------
@@ -153,7 +171,6 @@
 ;; expand-region
 ;; -------------------
 (use-package expand-region
-  :commands er/expand-region
   :bind ("M-A" . er/expand-region))
 
 ;; -------------------
@@ -171,19 +188,35 @@
   (which-key-mode))
 
 ;; -------------------
+;; multiple-cursors
+;; -------------------
+(use-package multiple-cursors
+  :bind
+  (("M-S-SPC" . set-rectangular-region-anchor)
+   :map wakib-overriding-mode-map
+	("C-." . mc/mark-next-like-this)
+	("C-," . mc/mark-previous-like-this)
+	("<C-down-mouse-1>" . mc/add-cursor-on-click)))
+
+;; -------------------
 ;; uniquify
 ;; -------------------
 
 ;; TODO (built into emacs, check performance hit if worth it)
 
 
+
+;; TODO (change defun rewrite to advice)
 (use-package quickrun
+  :init
+  (global-set-key [menu-bar tools quickrun] `(menu-item ,"Run Buffer" quickrun))  
   :config
   (setq quickrun-focus-p nil)
-  (defun quickrun--recenter (arg)
-  (with-selected-window (get-buffer-window quickrun--buffer-name)
-    (recenter arg)
-    (end-of-buffer)))
+  (advice-add 'quickrun--recenter
+	      :after (lambda (&optional _)
+		       (with-selected-window
+			   (get-buffer-window quickrun--buffer-name)
+			 (end-of-buffer))))
   :bind
   (([f8] . quickrun )))
 
@@ -200,12 +233,6 @@
 
 (use-package markdown-mode
   :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
-
-
-(use-package org
-  :config
-  (bind-key (kbd "M-e") nil org-mode-map)
-  (bind-key (kbd "C-e") nil org-mode-map))
 
 
 ;; Setup Splash Screen
