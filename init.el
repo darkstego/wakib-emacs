@@ -49,7 +49,7 @@
 (wakib-mode 1)
 (diminish 'wakib-mode)
 (add-hook 'after-change-major-mode-hook 'wakib-update-major-mode-map)
-
+(add-hook 'menu-bar-update-hook 'wakib-update-minor-mode-maps)
 ;; -------------------
 ;; Initial Setup
 ;; -------------------
@@ -59,8 +59,8 @@
 
 (cua-selection-mode 1)
 ;;(define-key cua--rectangle-keymap (kbd "ESC") nil)
-(define-key cua-global-keymap (kbd "<C-return>") nil)
-(define-key cua-global-keymap (kbd "C-x SPC") 'cua-rectangle-mark-mode)
+;;(define-key cua-global-keymap (kbd "<C-return>") nil)
+;;(define-key cua-global-keymap (kbd "C-x SPC") 'cua-rectangle-mark-mode)
 
 (advice-add 'substitute-command-keys :around #'wakib-substitute-command-keys)
 
@@ -155,7 +155,7 @@
 	    `(menu-item ,"Project" ,(global-key-binding [menu-bar tools Projectile])
 			:visible (projectile-project-p)))
   (define-key wakib-mode-map [menu-bar project seperator1] `(menu-item ,"--" nil))
-  (define-key wakib-mode-map [menu-bar project git] `(menu-item ,"Git ..." magit-status))
+  (define-key wakib-mode-map [menu-bar project git] `(menu-item ,"Git ..." magit-status :keys "C-e g"))
   (global-unset-key [menu-bar tools Projectile]))
 
 
@@ -165,7 +165,9 @@
 (use-package company               
   :diminish company-mode
   :config
-  (global-company-mode 1))
+  (global-company-mode 1)
+  (define-key company-active-map [remap wakib-next] 'company-select-next)
+  (define-key company-active-map [remap wakib-previous] 'company-select-previous))
 
 ;; -------------------
 ;; expand-region
@@ -190,7 +192,12 @@
 ;; -------------------
 ;; multiple-cursors
 ;; -------------------
+;; TODO - Advice CUA-keyboard-quit to quit mc and rrm
 (use-package multiple-cursors
+  :config
+  (define-key mc/keymap [remap keyboard-quit] 'mc/keyboard-quit)
+  (define-key rectangular-region-mode-map [remap keyboard-quit] 'rrm/keyboard-quit)
+  (custom-set-variables `(mc/always-run-for-all ,t))
   :bind
   (("M-S-SPC" . set-rectangular-region-anchor)
    :map wakib-overriding-mode-map
@@ -239,7 +246,7 @@
 (setq inhibit-startup-screen t)
 (setq-default major-mode 'org-mode)
 (setq initial-buffer-choice 'wakib-new-empty-buffer)
-(setq-default initial-scratch-message ";; Emacs elisp scratch buffer. Happy hacking.\n\n")
+(setq-default initial-scratch-message ";; Emacs lisp scratch buffer. Happy hacking.\n\n")
 
 (setq custom-file (expand-file-name "custom" user-emacs-directory))
 (load custom-file t t)
