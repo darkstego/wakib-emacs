@@ -45,9 +45,9 @@
 ;; -------------------
 ;; Wakib
 ;; -------------------
-(require 'wakib-mode)
-(wakib-mode 1)
-(diminish 'wakib-mode)
+(require 'wakib-keys)
+(wakib-keys 1)
+(diminish 'wakib-keys)
 (add-hook 'after-change-major-mode-hook 'wakib-update-major-mode-map)
 (add-hook 'menu-bar-update-hook 'wakib-update-minor-mode-maps)
 ;; -------------------
@@ -133,7 +133,7 @@
   :diminish counsel-mode
   :config
   (counsel-mode 1)
-  (define-key wakib-overriding-mode-map (kbd "C-S-v") 'counsel-yank-pop))
+  (define-key wakib-keys-overriding-map (kbd "C-S-v") 'counsel-yank-pop))
 
 (use-package smex)
 
@@ -151,11 +151,11 @@
   (projectile-mode 1)
   (wakib-update-menu-map (global-key-binding [menu-bar tools Projectile])
 			 projectile-command-map "C-e p")
-  (define-key wakib-mode-map [menu-bar project]
+  (define-key wakib-keys-map [menu-bar project]
 	    `(menu-item ,"Project" ,(global-key-binding [menu-bar tools Projectile])
 			:visible (projectile-project-p)))
-  (define-key wakib-mode-map [menu-bar project seperator1] `(menu-item ,"--" nil))
-  (define-key wakib-mode-map [menu-bar project git] `(menu-item ,"Git ..." magit-status :keys "C-e g"))
+  (define-key wakib-keys-map [menu-bar project seperator1] `(menu-item ,"--" nil))
+  (define-key wakib-keys-map [menu-bar project git] `(menu-item ,"Git ..." magit-status :keys "C-e g"))
   (global-unset-key [menu-bar tools Projectile]))
 
 
@@ -200,7 +200,7 @@
   (custom-set-variables `(mc/always-run-for-all ,t))
   :bind
   (("M-S-SPC" . set-rectangular-region-anchor)
-   :map wakib-overriding-mode-map
+   :map wakib-keys-overriding-map
 	("C-." . mc/mark-next-like-this)
 	("C-," . mc/mark-previous-like-this)
 	("<C-down-mouse-1>" . mc/add-cursor-on-click)))
