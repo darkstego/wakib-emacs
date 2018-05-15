@@ -135,6 +135,7 @@
   (counsel-mode 1)
   (define-key wakib-overriding-mode-map (kbd "C-S-v") 'counsel-yank-pop))
 
+;; find out what ivy uses from smex
 (use-package smex)
 
 ;; -------------------
@@ -158,6 +159,28 @@
   (define-key wakib-mode-map [menu-bar project git] `(menu-item ,"Git ..." magit-status :keys "C-e g"))
   (global-unset-key [menu-bar tools Projectile]))
 
+;; -------------------
+;; Yasnippet
+;; -------------------
+
+(use-package yasnippet-snippets
+  :defer t)
+
+(use-package yasnippet
+  :hook
+  ((prog-mode . yas-minor-mode))
+  :diminish yas-minor-mode
+  :config
+  (require 'yasnippet-snippets)
+  (yas-reload-all)
+  (define-key yas-keymap [remap wakib-next] 'yas-next-field)
+  (define-key yas-keymap [remap wakib-previous] 'yas-prev-field))
+
+
+
+(use-package ivy-yasnippet
+  :bind ("C-y" . ivy-yasnippet))
+
 
 ;; -------------------
 ;; expand-region
@@ -180,6 +203,15 @@
 ;; -------------------
 (use-package avy
   :bind ("M-m" . avy-goto-char-2))
+
+;; -------------------
+;; switch-window
+;; -------------------
+(use-package switch-window
+  :bind ("M-S" . switch-window)
+  :config
+  (setq switch-window-shortcut-style 'qwerty)
+  (setq switch-window-threshold 1))
 
 ;; -------------------
 ;; which-key
