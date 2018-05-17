@@ -31,7 +31,7 @@
     ;; For important compatibility libraries like cl-lib
     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
-
+(setq package-enable-at-startup nil)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
@@ -177,7 +177,6 @@
   (define-key yas-keymap [remap wakib-previous] 'yas-prev-field))
 
 
-
 (use-package ivy-yasnippet
   :bind ("C-y" . ivy-yasnippet))
 
@@ -238,10 +237,12 @@
 	("<C-down-mouse-1>" . mc/add-cursor-on-click)))
 
 ;; -------------------
-;; uniquify
+;; diff-hl
 ;; -------------------
-
-;; TODO (built into emacs, check performance hit if worth it)
+(use-package diff-hl
+  :hook
+  ((prog-mode . turn-on-diff-hl-mode)
+   (magit-post-refresh-hook . diff-hl-magit-post-refresh)))
 
 
 
@@ -251,6 +252,7 @@
   (global-set-key [menu-bar tools quickrun] `(menu-item ,"Run Buffer" quickrun))  
   :config
   (setq quickrun-focus-p nil)
+  ;; Move cursor out of the way when displaying output
   (advice-add 'quickrun--recenter
 	      :after (lambda (&optional _)
 		       (with-selected-window
@@ -277,9 +279,16 @@
 ;; Setup Splash Screen
 (setq inhibit-startup-screen t)
 (setq-default major-mode 'org-mode)
-(setq initial-buffer-choice 'wakib-new-empty-buffer)
 (setq-default initial-scratch-message ";; Emacs lisp scratch buffer. Happy hacking.\n\n")
+
+;; Initial buffer choice causes split window when opening file from command line or
+;; DE. While running wakib empty buffer causes profiling init file to fail
+;;
+;; (setq initial-buffer-choice (lambda (&optional _)
+;; 			      (let ((buf (generate-new-buffer "untitled")))
+;; 				(set-buffer-major-mode buf)
+;; 				buf)))
+(wakib-new-empty-buffer)
 
 (setq custom-file (expand-file-name "custom" user-emacs-directory))
 (load custom-file t t)
-
