@@ -98,7 +98,13 @@
 ;; -------------------
 (use-package moe-theme
   :config
-  (load-theme 'moe-dark t))
+  (load-theme 'moe-dark t)
+  ;; diff-hl
+  (custom-theme-set-faces
+   'moe-dark
+   '(diff-hl-insert ((t (:background "#008700" :foreground "#a1db00"))))
+   '(diff-hl-change ((t (:background "#005f87" :foreground "#1f5bff"))))
+   '(diff-hl-delete ((t (:background "#a40000" :foreground "#ef2929"))))))
 
 ;; -------------------
 ;; Magit
