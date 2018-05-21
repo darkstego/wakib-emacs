@@ -231,10 +231,12 @@
 ;; -------------------
 ;; TODO - Advice CUA-keyboard-quit to quit mc and rrm
 (use-package multiple-cursors
+  :init
+  (custom-set-variables `(mc/always-run-for-all ,t))
   :config
   (define-key mc/keymap [remap keyboard-quit] 'mc/keyboard-quit)
   (define-key rectangular-region-mode-map [remap keyboard-quit] 'rrm/keyboard-quit)
-  (custom-set-variables `(mc/always-run-for-all ,t))
+  ;;(custom-set-variables `(mc/always-run-for-all ,t))
   :bind
   (("M-S-SPC" . set-rectangular-region-anchor)
    :map wakib-keys-overriding-map
