@@ -30,11 +30,11 @@ the third-party packages.
 
 CTRL
 -----
-![CTRL-KEYS](https://s7.postimg.cc/em2rqplej/Keyboard_CTRL_Layout.png "wakib-keys ctrl bindings")
+![CTRL-KEYS](https://s7.postimg.cc/il9613h4b/Keyboard_CTRL_Layout.png "wakib-keys ctrl bindings")
 
 ALT
 ---
-![ALT-KEYS](https://s7.postimg.cc/i5opgoo63/Keyboard_ALT_Layout.png "wakib-keys alt bindings")
+![ALT-KEYS](https://s7.postimg.cc/z90o3m6qz/Keyboard_ALT_Layout.png "wakib-keys alt bindings")
 
 
 
