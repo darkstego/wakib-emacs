@@ -51,14 +51,14 @@
 (add-hook 'after-change-major-mode-hook 'wakib-update-major-mode-map)
 (add-hook 'menu-bar-update-hook 'wakib-update-minor-mode-maps)
 ;; Modifying other modules
-;; TODO remap
+;; When remap is used for wakib-next and wakib-previous it no longer works
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
-(define-key isearch-mode-map [remap wakib-next] 'isearch-repeat-forward)
-(define-key isearch-mode-map [remap wakib-previous] 'isearch-repeat-backward)
+(define-key isearch-mode-map (kbd "M-;") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "M-:") 'isearch-repeat-backward)
 (define-key isearch-mode-map (kbd "C-v") 'isearch-yank-kill)
 
-
+ 
 ;; -------------------
 ;; Initial Setup
 ;; -------------------
