@@ -21,7 +21,7 @@ If you would like to save your old configuration make sure to
 back up your `~/.emacs.d` by moving or renaming it.
 
 ```
-git clone --recursive https://github.com/darkstego/wakib.d.git ~/.emacs.d
+git clone https://github.com/darkstego/wakib.d.git ~/.emacs.d
 ```
 The first time emacs starts after this, it will automaticall download all 
 the third-party packages.
@@ -30,16 +30,17 @@ the third-party packages.
 
 CTRL
 -----
-![CTRL-KEYS](https://s7.postimg.cc/il9613h4b/Keyboard_CTRL_Layout.png "wakib-keys ctrl bindings")
+![CTRL-KEYS](https://s15.postimg.cc/9bmeocmqz/Keyboard_CTRL_Layout.png "wakib-keys ctrl bindings")
 
 ALT
 ---
-![ALT-KEYS](https://s7.postimg.cc/z90o3m6qz/Keyboard_ALT_Layout.png "wakib-keys alt bindings")
+![ALT-KEYS](https://s15.postimg.cc/407i3k0nf/Keyboard_ALT_Layout.png "wakib-keys alt bindings")
 
 
 
 ## Contribution
 
 Be it code, bugfixes, or just a suggestion of a behavior or package
-that should be added to this config. I am really interested to get
-other opinions on what is working and what isn't.
+that should be added to this config. Just open up an issue on
+github. I am really interested to get other opinions on what is
+working and what isn't.

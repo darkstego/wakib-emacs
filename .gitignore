@@ -3,4 +3,5 @@
 /elpa/*
 /session.*
 /custom.el
+init-local.el
 *~

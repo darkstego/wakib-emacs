@@ -1,0 +1,9 @@
+;; Place all local configuration options here
+
+;; Automatically create closing parenthesis/quote
+(electric-pair-mode 1)
+
+
+
+
+(provide 'init-local)

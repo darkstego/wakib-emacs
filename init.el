@@ -45,18 +45,19 @@
 ;; -------------------
 ;; Wakib
 ;; -------------------
-(require 'wakib-keys)
-(wakib-keys 1)
-(diminish 'wakib-keys)
-(add-hook 'after-change-major-mode-hook 'wakib-update-major-mode-map)
-(add-hook 'menu-bar-update-hook 'wakib-update-minor-mode-maps)
-;; Modifying other modules
-;; When remap is used for wakib-next and wakib-previous it no longer works
-(define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
-(define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
-(define-key isearch-mode-map (kbd "M-;") 'isearch-repeat-forward)
-(define-key isearch-mode-map (kbd "M-:") 'isearch-repeat-backward)
-(define-key isearch-mode-map (kbd "C-v") 'isearch-yank-kill)
+(use-package wakib-keys
+  :diminish wakib-keys
+  :config
+  (wakib-keys 1)
+  (add-hook 'after-change-major-mode-hook 'wakib-update-major-mode-map)
+  (add-hook 'menu-bar-update-hook 'wakib-update-minor-mode-maps)
+  ;; Modifying other modules
+  ;; When remap is used for wakib-next and wakib-previous it no longer works
+  (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
+  (define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "M-;") 'isearch-repeat-forward)
+  (define-key isearch-mode-map (kbd "M-:") 'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "C-v") 'isearch-yank-kill))
 
  
 ;; -------------------
@@ -283,7 +284,6 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 (show-paren-mode 1)
-(electric-pair-mode 1)
 ;; TODO - MOVE Electric Pair Mode to user local
 
 
@@ -309,3 +309,5 @@
 
 (setq custom-file (expand-file-name "custom" user-emacs-directory))
 (load custom-file t t)
+
+(require 'init-local nil t)
