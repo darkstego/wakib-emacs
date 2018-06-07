@@ -37,6 +37,16 @@ ALT
 ![ALT-KEYS](https://s15.postimg.cc/407i3k0nf/Keyboard_ALT_Layout.png "wakib-keys alt bindings")
 
 
+## User local changes
+
+In order to add your own changes to the starter kit that won't be
+overwritten anytime you update the project, create a subdirectory
+named `local` in your emacs.d directory, and add your changes to a
+file called `init-local.el`. You could just copy or rename the
+template from the `init-local.el.template` file that comes with the
+project. The template file contains some common changes that did not
+fit as part of the default starter kit.
+
 
 ## Contribution
 
