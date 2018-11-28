@@ -223,7 +223,7 @@
 ;; switch-window
 ;; -------------------
 (use-package switch-window
-  :bind ("M-S-h" . switch-window)
+  :bind ("M-H" . switch-window)
   :config
   (setq switch-window-shortcut-style 'qwerty)
   (setq switch-window-threshold 1))
