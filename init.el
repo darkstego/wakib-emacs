@@ -223,7 +223,7 @@
 ;; switch-window
 ;; -------------------
 (use-package switch-window
-  :bind ("M-S" . switch-window)
+  :bind ("M-S-h" . switch-window)
   :config
   (setq switch-window-shortcut-style 'qwerty)
   (setq switch-window-threshold 1))
@@ -248,7 +248,7 @@
   (define-key rectangular-region-mode-map [remap keyboard-quit] 'rrm/keyboard-quit)
   ;;(custom-set-variables `(mc/always-run-for-all ,t))
   :bind
-  (("M-S-SPC" . set-rectangular-region-anchor)
+  (("M-S-s" . set-rectangular-region-anchor)
    :map wakib-keys-overriding-map
 	("C-." . mc/mark-next-like-this)
 	("C-," . mc/mark-previous-like-this)
