@@ -16,13 +16,23 @@ with private changes from using this starter kit as a base.
 
 ## Installation
 
-To install, clone this repo and its submodules to  `~/.emacs.d`.
-If you would like to save your old configuration make sure to
-back up your `~/.emacs.d` by moving or renaming it.
+You will, of course, must have installed Emacs on your system first.
 
+To install this starter kit, clone this repo to your user emacs
+directory (typically `~/.emacs.d`).  If you would like to save your
+old configuration make sure to back up your user emacs directory by
+moving or renaming it.
+
+On Linux and MacOS the installation is simply
 ```
 git clone https://github.com/darkstego/wakib.d.git ~/.emacs.d
 ```
+
+In the case of Windows OS then you can simply run the following in git bash
+```
+git clone https://github.com/darkstego/wakib.d.git ~/AppData/Roaming/.emacs.d 
+```
+
 The first time emacs starts after this, it will automaticall download all 
 the third-party packages.
 
