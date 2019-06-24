@@ -292,6 +292,11 @@
 (use-package markdown-mode
   :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
 
+(use-package csharp-mode
+  :mode ("\\.cs\\'" . csharp-mode)
+  :interpreter ("csharp" . csharp-mode))
+
+
 
 ;; Setup Splash Screen
 (setq inhibit-startup-screen t)
