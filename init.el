@@ -312,7 +312,7 @@
 ;; 				buf)))
 (wakib-new-empty-buffer)
 
-(setq custom-file (expand-file-name "custom" user-emacs-directory))
-(load custom-file t t)
+(setq local-directory (expand-file-name "custom" user-emacs-directory))
+(load local-directory t t)
 
 (require 'init-local nil t)
