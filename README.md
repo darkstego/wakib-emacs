@@ -33,7 +33,7 @@ In the case of Windows OS then you can simply run the following in git bash
 git clone https://github.com/darkstego/wakib.d.git ~/AppData/Roaming/.emacs.d 
 ```
 
-The first time emacs starts after this, it will automaticall download all 
+The first time emacs starts after this, it will automatically download all 
 the third-party packages.
 
 ## Bindings
