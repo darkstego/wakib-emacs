@@ -282,8 +282,6 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 (show-paren-mode 1)
-;; TODO - MOVE Electric Pair Mode to user local
-
 
 ;; MAJOR MODES
 
@@ -293,6 +291,9 @@
 (use-package csharp-mode
   :mode ("\\.cs\\'" . csharp-mode)
   :interpreter ("csharp" . csharp-mode))
+
+(use-package js2-mode
+  :mode "\\.js\\'")
 
 
 
