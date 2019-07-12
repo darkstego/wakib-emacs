@@ -10,9 +10,7 @@
 ;; Setup Load Path
 ;; ---------------------
 
-(nconc load-path
-       (list (expand-file-name "local" user-emacs-directory)
-	     (expand-file-name "wakib" user-emacs-directory)))
+(add-to-list 'load-path (expand-file-name "user" user-emacs-directory))
 
 
 ;; -----------------------
@@ -312,7 +310,7 @@
 ;; 				buf)))
 (wakib-new-empty-buffer)
 
-(setq local-directory (expand-file-name "custom" user-emacs-directory))
-(load local-directory t t)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file t t)
 
-(require 'init-local nil t)
+(require 'init-user nil t)

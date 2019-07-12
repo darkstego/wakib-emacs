@@ -86,9 +86,9 @@ that they won't be overwritten by future updates to Wakib.
 
 In order to add your own changes to the starter kit that won't be
 overwritten anytime you update the project, create a subdirectory
-named `local` in your emacs.d directory, and add your changes to a
-file called `init-local.el`. You could just copy or rename the
-template from the `init-local.el.template` file that comes with the
+named `user` in your emacs.d directory, and add your changes to a
+file called `init-user.el`. You could just copy or rename the
+template from the `init-user.el.template` file that comes with the
 project. The template file contains some common changes that did not
 fit as part of the default starter kit.
 
