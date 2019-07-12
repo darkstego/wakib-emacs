@@ -1,4 +1,4 @@
-# Wakib.d - Easy, Powerful Emacs 
+# Wakib.d - Emacs For The Rest Of Us 
 
 This is an Emacs starter kit project that aims to bring a modern,
 user-friendly version of Emacs. This starter kit build off the bindings of
@@ -8,6 +8,7 @@ emacs, this starter kit builds on it by adding changes to the look
 and behaviour of Emacs, as well as bundling many of the very useful packages.
 
 The purpose of this is to make an Emacs starter kit that "Just Works".
+If anyone is interested in trying Emacs 
 This isn't meant to be a copy of my entire emacs.d, but rather a bunch
 of sensible defaults that would allow users to hit the ground running
 with Emacs. This also allows users to customize their own experience
