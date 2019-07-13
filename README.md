@@ -8,16 +8,15 @@ emacs, this starter kit builds on it by adding changes to the look
 and behaviour of Emacs, as well as bundling many of the very useful packages.
 
 The purpose of this is to make an Emacs starter kit that "Just Works".
-If anyone is interested in trying Emacs 
-This isn't meant to be a copy of my entire emacs.d, but rather a bunch
-of sensible defaults that would allow users to hit the ground running
-with Emacs. This also allows users to customize their own experience
-with private changes from using this starter kit as a base.
+If you are interested in all the power of Emacs without the steep
+learning curve, then this is the startr kit for you.  Hopefully, this
+will make Emacs a viable option even for someone just starting to
+learn programming.
 
 
 ## Installation
 
-You will, of course, must have installed Emacs on your system first.
+You must, of course, have installed Emacs on your system first.
 
 To install this starter kit, clone this repo to your user emacs
 directory (typically `~/.emacs.d`).  If you would like to save your
@@ -64,34 +63,32 @@ Commands that are very common end up here. Most of these shortcuts are
 the common shortcuts users have grown accustomed to. This can be also
 used for commands that need to be fast and concise.
 
-### C-e ? (Extended Shortcuts)
+### C-e ? (Extended Shortcuts formerly C-x)
 This points to the typical C-x map in Emacs. The main purpose in Wakib
 is to provide room for extra shortcuts. Any of the old Emacs C-x
 shortcuts that now have equivalent as a common shortcut can be
 recycled.
 
-### C-d C-? Mode Shortcuts
+### C-d C-? (Mode Shortcuts formerly C-c)
 This points to the C-c map in Emacs. Major modes typically populate
 their shortcuts here, and these are untouched in wakib.
 
-### C-d ?  User Shortcuts
+### C-d ?  (User Shortcuts)
 As per the Emacs guidlines, keybindings that start with C-d and a single
 character should be reserved for user, so as a general rule these will not
 be populated. This allows users to add their own custom shortcuts knowing
 that they won't be overwritten by future updates to Wakib.
 
 
-
-
 ## User local changes
 
 In order to add your own changes to the starter kit that won't be
 overwritten anytime you update the project, create a subdirectory
-named `user` in your emacs.d directory, and add your changes to a
-file called `init-user.el`. You could just copy or rename the
-template from the `init-user.el.template` file that comes with the
-project. The template file contains some common changes that did not
-fit as part of the default starter kit.
+named `user` in your emacs.d directory, and add your changes to a file
+called `init-user.el`. You could just copy or rename the template from
+the `init-user.el.template` file that comes with the project. The
+template file contains extra configuration that while useful, did not
+make sense as default behaviour for the starter kit.
 
 
 ## Contribution
