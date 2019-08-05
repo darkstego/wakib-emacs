@@ -112,7 +112,9 @@
    'moe-dark
    '(diff-hl-insert ((t (:background "#008700" :foreground "#a1db00"))))
    '(diff-hl-change ((t (:background "#005f87" :foreground "#1f5bff"))))
-   '(diff-hl-delete ((t (:background "#a40000" :foreground "#ef2929"))))))
+   '(diff-hl-delete ((t (:background "#a40000" :foreground "#ef2929"))))
+   '(flyspell-duplicate ((t (:underline (:color "#ff0000" :style wave)))))
+   '(flyspell-incorrect ((t (:underline (:color "#ff0000" :style wave)))))))
 
 ;; -------------------
 ;; Magit
