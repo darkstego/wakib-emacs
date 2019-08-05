@@ -13,6 +13,20 @@ learning curve, then this is the startr kit for you.  Hopefully, this
 will make Emacs a viable option even for someone just starting to
 learn programming.
 
+## Features
+
+Many of the features of Wakib were designed to  prioritizes the user experience. These include: 
+
+* Use of Common shortcuts. No need to learn new ways to Open, Save, Copy, Paste...
+* Consistentcy. The shortcuts are displayed correctly in the menu bar and minibuffer.
+* New buffers defaults to Org mode. One of the best things about Emacs
+  should feature front and center.
+* Efficient. Like Vim and Emacs bindings, Wakib was designed to keep
+  your fingers near the homekeys for all common commands.
+* Ergonomic. The most repetitive commands use Alt instead of Ctrl to reduce RSI.
+* Easy to learn. Shortcuts are grouped together logically to enable
+  users to quickly pick up keybindings.
+
 
 ## Installation
 
