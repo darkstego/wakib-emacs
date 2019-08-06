@@ -158,6 +158,22 @@
 (use-package smex)
 
 ;; -------------------
+;; Flyspell-correct
+;; -------------------
+(use-package flyspell-correct
+  :config
+  (define-key popup-menu-keymap (kbd "M-;") 'popup-next)
+  (define-key popup-menu-keymap (kbd "M-:") 'popup-previous)
+  (define-key popup-menu-keymap (kbd "M-k") 'popup-next)
+  (define-key popup-menu-keymap (kbd "M-i") 'popup-previous)
+  (define-key flyspell-mouse-map [mouse-2] nil)
+  (define-key flyspell-mouse-map [mouse-3] 'flyspell-correct-word)
+  (defun wakib-flyspell-correct (&optional arg)
+  "Correct previous word"
+  (interactive "p")
+    (flyspell-correct-wrapper arg)))
+
+;; -------------------
 ;; Projectile
 ;; -------------------
 ;; No deferred loading as bind-keymap
