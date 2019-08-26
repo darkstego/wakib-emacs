@@ -75,7 +75,7 @@
 
 (advice-add 'substitute-command-keys :around #'wakib-substitute-command-keys)
 
-
+(setq org-export-with-toc nil)
 
 
 
