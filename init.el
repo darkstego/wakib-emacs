@@ -160,7 +160,7 @@
 ;; -------------------
 ;; Flyspell-correct
 ;; -------------------
-(use-package flyspell-correct
+(use-package flyspell-correct-popup
   :config
   (define-key popup-menu-keymap (kbd "M-;") 'popup-next)
   (define-key popup-menu-keymap (kbd "M-:") 'popup-previous)
@@ -168,10 +168,17 @@
   (define-key popup-menu-keymap (kbd "M-i") 'popup-previous)
   (define-key flyspell-mouse-map [mouse-2] nil)
   (define-key flyspell-mouse-map [mouse-3] 'flyspell-correct-word)
-  (defun wakib-flyspell-correct (&optional arg)
+  (defun wakib-next-more (&optional arg)
   "Correct previous word"
   (interactive "p")
-    (flyspell-correct-wrapper arg)))
+  (cond ((and flyspell-mode
+	      (or (wakib-find-overlays-specifying 'flyspell-overlay)
+		  (save-excursion
+		    (backward-word)
+		    (wakib-find-overlays-specifying 'flyspell-overlay))))
+	(flyspell-correct-wrapper arg))))
+  :init
+  (setq flyspell-correct-interface #'flyspell-correct-popup))
 
 ;; -------------------
 ;; Projectile
