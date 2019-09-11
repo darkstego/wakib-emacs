@@ -243,7 +243,7 @@
 ;; avy
 ;; -------------------
 (use-package avy
-  :bind ("M-m" . avy-goto-char-2))
+  :bind ("M-m" . avy-goto-char))
 
 ;; -------------------
 ;; switch-window
