@@ -3,9 +3,9 @@
 ;; Automatically create closing parenthesis/quote
 (electric-pair-mode 1)
 
-;; Auto-save org-mode buffers
-(add-hook 'auto-save-hook 'org-save-all-org-buffers)
-
-
+;; Enable Visual Line Mode to wrap at fill column
+(use-package visual-fill-column
+  :config
+  (add-hook 'visual-line-mode-hook #'visual-fill-column-mode))
 
 (provide 'init-user)
