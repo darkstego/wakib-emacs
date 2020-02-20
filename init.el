@@ -120,6 +120,11 @@
    '(flyspell-incorrect ((t (:underline (:color "#ff0000" :style wave)))))))
 
 ;; -------------------
+;; Undo-tree
+;; -------------------
+(use-package undo-tree)
+
+;; -------------------
 ;; Magit
 ;; -------------------
 (use-package magit
