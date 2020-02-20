@@ -122,7 +122,13 @@
 ;; -------------------
 ;; Undo-tree
 ;; -------------------
-(use-package undo-tree)
+(use-package undo-tree
+  :diminish undo-tree
+  :config
+  (global-undo-tree-mode)
+  :bind
+  (("C-S-z" . undo-tree-redo))
+  )
 
 ;; -------------------
 ;; Magit
