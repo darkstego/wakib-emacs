@@ -40,8 +40,10 @@
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
+(require 'use-package-ensure)
 (setq use-package-always-ensure t)
-(use-package diminish)
+(require 'diminish)
+(require 'bind-key)
 
 ;; -------------------
 ;; Wakib
