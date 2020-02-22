@@ -124,11 +124,14 @@
 ;; -------------------
 (use-package undo-tree
   :diminish undo-tree
+  ;; load undo tree or else won't start until redo triggered
+  :defer 2
   :config
   (global-undo-tree-mode)
+  (define-key undo-tree-visualizer-mode-map [remap left-char] 'undo-tree-visualize-switch-branch-left)
+  (define-key undo-tree-visualizer-mode-map [remap right-char] 'undo-tree-visualize-switch-branch-right)
   :bind
-  (("C-S-z" . undo-tree-redo))
-  )
+  (("C-S-z" . undo-tree-redo)))
 
 ;; -------------------
 ;; Magit
