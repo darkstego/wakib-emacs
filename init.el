@@ -123,7 +123,7 @@
 ;; Undo-tree
 ;; -------------------
 (use-package undo-tree
-  :diminish undo-tree
+  :diminish undo-tree-mode
   ;; load undo tree or else won't start until redo triggered
   :defer 2
   :config
