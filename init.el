@@ -238,7 +238,7 @@
 
 
 ;; -------------------
-;; expand-region
+;; Company
 ;; -------------------
 (use-package company               
   :diminish company-mode
