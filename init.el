@@ -53,12 +53,14 @@
   (add-hook 'after-change-major-mode-hook 'wakib-update-major-mode-map)
   (add-hook 'menu-bar-update-hook 'wakib-update-minor-mode-maps)
   ;; Modifying other modules
-  ;; When remap is used for wakib-next and wakib-previous it no longer works
+  ;; When remap is used it exits isearch abruptly after first instance
+  ;; Use explicit keybindings instead
   (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
   (define-key isearch-mode-map (kbd "C-S-f") 'isearch-repeat-backward)
   (define-key isearch-mode-map (kbd "M-;") 'isearch-repeat-forward)
   (define-key isearch-mode-map (kbd "M-:") 'isearch-repeat-backward)
-  (define-key isearch-mode-map (kbd "C-v") 'isearch-yank-kill))
+  (define-key isearch-mode-map (kbd "C-v") 'isearch-yank-kill)
+  (define-key isearch-mode-map (kbd "M-d") 'isearch-delete-char))
 
  
 ;; -------------------
