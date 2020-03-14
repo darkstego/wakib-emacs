@@ -106,6 +106,18 @@ the `init-user.el.template` file that comes with the project. The
 template file contains extra configuration that while useful, did not
 make sense as default behaviour for the starter kit.
 
+If you would like to use some of your own keybindings instead of the
+ones provided by wakib, you have two ways to do so:
+
+1. If you are overwriting a key to do something totally different from
+   the original, then just overwrite the key in
+   `wakib-keys-overriding-map` so for example: `(define-key
+   wakib-keys-overriding-map (kbd "C-q") 'quoted-insert)`
+
+2. If you are remapping a certain function and have all keys that do
+   that function do something else instead then just apply remaps to
+   the global-map or any active mode, for example: `(define-key
+   (current-global-map) [remap undo] 'my-undo)`
 
 ## Contribution
 
