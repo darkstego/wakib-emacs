@@ -79,7 +79,7 @@
 
 (setq org-export-with-toc nil)
 (setq org-support-shift-select t)
-
+(setq frame-title-format '((:eval (buffer-name))" [%+] Wakib Emacs"))
 
 ;; Menu Bars
 ;; TODO - Change bind-key to define-key
