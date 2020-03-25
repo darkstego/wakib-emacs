@@ -276,6 +276,7 @@
 (use-package which-key
   :diminish which-key-mode
   :config
+  (setq which-key-idle-delay 0.1)
   (which-key-mode))
 
 ;; -------------------
