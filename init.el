@@ -71,6 +71,7 @@
   (menu-bar-mode -1))
 
 (cua-selection-mode 1)
+(define-key cua-global-keymap (kbd "<C-return>") nil)
 ;;(define-key cua--rectangle-keymap (kbd "ESC") nil)
 ;;(define-key cua-global-keymap (kbd "<C-return>") nil)
 ;;(define-key cua-global-keymap (kbd "C-x SPC") 'cua-rectangle-mark-mode)
