@@ -1,4 +1,4 @@
-# Wakib.d - Emacs For The Rest Of Us 
+# Wakib - Emacs For The Rest Of Us 
 
 This is an Emacs starter kit project that aims to bring a modern,
 user-friendly version of Emacs. This starter kit build off the bindings of
