@@ -344,7 +344,8 @@
 (use-package js2-mode
   :mode "\\.js\\'")
 
-
+(use-package crystal-mode
+  :mode "\\.cr\\'")
 
 ;; Setup Splash Screen
 (setq inhibit-startup-screen t)
