@@ -76,6 +76,9 @@
 ;;(define-key cua-global-keymap (kbd "<C-return>") nil)
 ;;(define-key cua-global-keymap (kbd "C-x SPC") 'cua-rectangle-mark-mode)
 
+(define-key read-expression-map [remap previous-line] 'previous-line-or-history-element)
+(define-key read-expression-map [remap next-line] 'next-line-or-history-element)
+
 (advice-add 'substitute-command-keys :around #'wakib-substitute-command-keys)
 
 (setq org-export-with-toc nil)
