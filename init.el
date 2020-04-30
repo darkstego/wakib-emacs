@@ -79,8 +79,6 @@
 (define-key read-expression-map [remap previous-line] 'previous-line-or-history-element)
 (define-key read-expression-map [remap next-line] 'next-line-or-history-element)
 
-(advice-add 'substitute-command-keys :around #'wakib-substitute-command-keys)
-
 (setq org-export-with-toc nil)
 (setq org-support-shift-select t)
 (setq frame-title-format '((:eval (buffer-name))" [%+] Wakib Emacs"))
