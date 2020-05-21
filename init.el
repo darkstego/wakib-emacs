@@ -194,7 +194,7 @@
 		  (save-excursion
 		    (backward-word)
 		    (wakib-find-overlays-specifying 'flyspell-overlay))))
-	(flyspell-correct-wrapper arg))))
+	(flyspell-correct-wrapper))))
   :init
   (setq flyspell-correct-interface #'flyspell-correct-popup))
 
