@@ -345,6 +345,9 @@
 (use-package crystal-mode
   :mode "\\.cr\\'")
 
+(use-package yaml-mode
+  :mode "\\.yml\\'")
+
 ;; Setup Splash Screen
 (setq inhibit-startup-screen t)
 (setq-default major-mode 'org-mode)
