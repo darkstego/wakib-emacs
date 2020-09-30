@@ -46,9 +46,8 @@
 ;; -------------------
 ;; Wakib
 ;; -------------------
-(use-package wakib-keys
-  :diminish wakib-keys
-  :config
+(progn
+  (load (concat user-emacs-directory "local/wakib-keys/wakib-keys.el"))
   (wakib-keys 1)
   (add-hook 'after-change-major-mode-hook 'wakib-update-major-mode-map)
   (add-hook 'menu-bar-update-hook 'wakib-update-minor-mode-maps)
