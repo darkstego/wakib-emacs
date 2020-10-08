@@ -348,6 +348,9 @@
 (use-package yaml-mode
   :mode "\\.yml\\'")
 
+(use-package haml-mode
+  :mode "\\.haml\\'")
+
 ;; Setup Splash Screen
 (setq inhibit-startup-screen t)
 (setq-default major-mode 'org-mode)
