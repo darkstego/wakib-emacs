@@ -31,7 +31,7 @@
 ;; Fix tls bug
 (when (< (string-to-number emacs-version) 26.3)
   (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
-(package-initialize)
+;;(package-initialize)
 (setq package-enable-at-startup nil)
 
 ;; Bootstrap `use-package'
@@ -356,14 +356,14 @@
 (setq-default major-mode 'org-mode)
 (setq-default initial-scratch-message ";; Emacs lisp scratch buffer. Happy hacking.\n\n")
 
-;; Initial buffer choice causes split window when opening file from command line or
-;; DE. While running wakib empty buffer causes profiling init file to fail
-;;
-;; (setq initial-buffer-choice (lambda (&optional _)
-;; 			      (let ((buf (generate-new-buffer "untitled")))
-;; 				(set-buffer-major-mode buf)
-;; 				buf)))
-(wakib-new-empty-buffer)
+;; Start with a blank buffer unless Emacs was started with a file to open.
+;; Otherwise causes split window when opening file from command line or GUI.
+(unless (< 1 (length command-line-args)) (setq initial-buffer-choice (lambda (&optional _)
+			      (let ((buf (generate-new-buffer "untitled")))
+				(set-buffer-major-mode buf)
+				(message "New Buffer Started")
+				(message (number-to-string (length command-line-args)))
+				buf))))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t t)
