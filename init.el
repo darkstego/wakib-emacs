@@ -31,8 +31,6 @@
 ;; Fix tls bug
 (when (< (string-to-number emacs-version) 26.3)
   (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
-;;(package-initialize)
-(setq package-enable-at-startup nil)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
