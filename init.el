@@ -105,6 +105,12 @@
 
 (global-unset-key [menu-bar options cua-mode])
 
+;; Disable backup and lockfile
+;; I hate browsing directories and seeing 'Emacs was Here' everywhere
+(setq create-lockfiles nil
+      make-backup-files nil)
+
+
 
 ;; -------------------
 ;; Theme
