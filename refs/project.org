@@ -1,0 +1,6 @@
+* Ideas
+** Autosave into cache folder
+   Could cause an issue if autosaving files through TRAMP or sudo as
+   it might leave a local copy of sensitive information.
+   Check [[https://www.gnu.org/software/emacs/manual/html_node/tramp/Auto_002dsave-and-Backup.html][here]].
+   

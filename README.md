@@ -102,7 +102,7 @@ In order to add your own changes to the starter kit that won't be
 overwritten anytime you update the project, create a subdirectory
 named `user` in your emacs.d directory, and add your changes to a file
 called `init-user.el`. You could just copy or rename the template from
-the `init-user.el.template` file that comes with the project. The
+the `refs/init-user.el.template` file that comes with the project. The
 template file contains extra configuration that while useful, did not
 make sense as default behaviour for the starter kit.
 
