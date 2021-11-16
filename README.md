@@ -29,6 +29,9 @@ Many of the features of Wakib were designed to  prioritizes the user experience.
 * Easy to learn. Shortcuts are grouped together logically to enable
   users to quickly pick up keybindings.
 
+## Changelog
+
+* Company no longer uses *return* for completion, but rather uses tab to complete part, and tab again to select. This solves the problem of not being able to insert a newline because Company mode opened an autocomplete popup.
 
 ## Installation
 

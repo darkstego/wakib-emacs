@@ -253,7 +253,10 @@
   :config
   (global-company-mode 1)
   (define-key company-active-map [remap wakib-next] 'company-select-next)
-  (define-key company-active-map [remap wakib-previous] 'company-select-previous))
+  (define-key company-active-map [remap wakib-previous] 'company-select-previous)
+  (define-key company-active-map (kbd "<tab>") 'company-complete)
+  (define-key company-active-map (kbd "<return>") nil)
+  (define-key company-active-map (kbd "RET") nil))
 
 ;; -------------------
 ;; expand-region
