@@ -1,4 +1,4 @@
-# Wakib - Emacs For The Rest Of Us 
+<h2 align="center"><img src="https://user-images.githubusercontent.com/2610287/236253542-ab75c56d-0bbc-457a-8587-d5d2c78d0eb3.svg" height="128"><img src="https://www.gnu.org/software/emacs/images/emacs.png" height="128"><br>Wakib: Emacs for the rest of us</h2>
 
 This is an Emacs starter kit project that aims to bring a modern,
 user-friendly version of Emacs. This starter kit build off the bindings of
