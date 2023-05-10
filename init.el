@@ -138,6 +138,7 @@
   (global-undo-tree-mode)
   (define-key undo-tree-visualizer-mode-map [remap left-char] 'undo-tree-visualize-switch-branch-left)
   (define-key undo-tree-visualizer-mode-map [remap right-char] 'undo-tree-visualize-switch-branch-right)
+  (setq undo-tree-auto-save-history nil)
   :bind
   (("C-S-z" . undo-tree-redo)))
 
