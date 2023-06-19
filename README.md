@@ -15,6 +15,8 @@ learn programming.
 
 You can find a video introduction about Wakib [here](https://youtu.be/rK51Lp_lreI).
 
+If you like these keybindings checkout the [Wakib project](https://github.com/darkstego/wakib-project) to use these bindings outside of Emacs.
+
 ## Features
 
 Many of the features of Wakib were designed to  prioritizes the user experience. These include: 
