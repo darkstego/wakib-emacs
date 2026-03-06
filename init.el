@@ -343,10 +343,6 @@
 (use-package markdown-mode
   :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
 
-(use-package csharp-mode
-  :mode ("\\.cs\\'" . csharp-mode)
-  :interpreter ("csharp" . csharp-mode))
-
 (use-package js2-mode
   :mode "\\.js\\'")
 
