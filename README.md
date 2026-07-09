@@ -1,15 +1,16 @@
 <h2 align="center"><img src="https://user-images.githubusercontent.com/2610287/236253542-ab75c56d-0bbc-457a-8587-d5d2c78d0eb3.svg" height="128"><img src="https://www.gnu.org/software/emacs/images/emacs.png" height="128"><br>Wakib: Emacs for the rest of us</h2>
 
-This is an Emacs starter kit project that aims to bring a modern,
-user-friendly version of Emacs. This starter kit build off the bindings of
-the [wakib-keys](https://github.com/darkstego/wakib-keys) project.
-While that focused on the changing many of the default keybindings in
-emacs, this starter kit builds on it by adding changes to the look
-and behaviour of Emacs, as well as bundling many of the very useful packages.
+This is an Emacs starter kit that aims to bring a modern,
+user-friendly version of Emacs. It builds on the keybindings of the
+[wakib-keys](https://github.com/darkstego/wakib-keys) project. While
+that project focused on changing the default keybindings of Emacs,
+this starter kit adds changes to the look and behaviour of Emacs, and
+bundles the best packages of the Emacs ecosystem with sensible
+defaults.
 
 The purpose of this is to make an Emacs starter kit that "Just Works".
 If you are interested in all the power of Emacs without the steep
-learning curve, then this is the startr kit for you.  Hopefully, this
+learning curve, then this is the starter kit for you. Hopefully, this
 will make Emacs a viable option even for someone just starting to
 learn programming.
 
@@ -17,45 +18,62 @@ You can find a video introduction about Wakib [here](https://youtu.be/rK51Lp_lre
 
 If you like these keybindings checkout the [Wakib project](https://github.com/darkstego/wakib-project) to use these bindings outside of Emacs.
 
-## Features
+## Core Principles
 
-Many of the features of Wakib were designed to  prioritizes the user experience. These include: 
+* **Low friction.** The shortcuts you use everywhere (Open, Save,
+  Copy, Paste, Undo...) work here too, so moving to and from Wakib
+  Emacs costs you nothing.
+* **Fast.** Starts in a fraction of a second and stays snappy.
+* **Best of the ecosystem.** Magit, Vertico, Corfu, tree-sitter,
+  Eglot... set up with sensible defaults so you don't have to.
+* **Editor to IDE.** Opens instantly as a text editor; turns into a
+  full IDE (completion, diagnostics, jump-to-definition) when you
+  need it.
+* **Beginner friendly.** Menus show the correct shortcuts, prompts
+  annotate themselves, and a which-key popup teaches you the rest.
+* **Easy to maintain.** A slim init and five small modules, built on
+  what already ships with Emacs wherever possible.
 
-* Use of Common shortcuts. No need to learn new ways to Open, Save, Copy, Paste...
-* Consistentcy. The shortcuts are displayed correctly in the menu bar and minibuffer.
-* New buffers defaults to Org mode. One of the best things about Emacs
-  should feature front and center.
-* Efficient. Like Vim and Emacs bindings, Wakib was designed to keep
-  your fingers near the homekeys for all common commands.
-* Ergonomic. The most repetitive commands use Alt instead of Ctrl to reduce RSI.
-* Easy to learn. Shortcuts are grouped together logically to enable
-  users to quickly pick up keybindings.
+## Requirements
 
-## Changelog
-
-* Company no longer uses *return* for completion, but rather uses tab to complete part, and tab again to select. This solves the problem of not being able to insert a newline because Company mode opened an autocomplete popup.
+**Emacs 30 or later.** The kit leans on features that are built into
+modern Emacs (use-package, eglot, tree-sitter, which-key,
+project.el), which keeps it fast and dependable.
 
 ## Installation
 
-You must, of course, have installed Emacs on your system first.
-
 To install this starter kit, clone this repo to your user emacs
-directory (typically `~/.emacs.d`).  If you would like to save your
+directory (typically `~/.emacs.d`). If you would like to save your
 old configuration make sure to back up your user emacs directory by
 moving or renaming it.
 
 On Linux and MacOS the installation is simply
+
 ```
 git clone https://github.com/darkstego/wakib-emacs.git ~/.emacs.d
 ```
 
 In the case of Windows OS then you can simply run the following in git bash
+
 ```
-git clone https://github.com/darkstego/wakib-emacs.git ~/AppData/Roaming/.emacs.d 
+git clone https://github.com/darkstego/wakib-emacs.git ~/AppData/Roaming/.emacs.d
 ```
 
-The first time emacs starts after this, it will automatically download all 
+The first time emacs starts after this, it will automatically download all
 the third-party packages.
+
+## What's Inside
+
+| Area | Packages |
+|------|----------|
+| Keybindings | [wakib-keys](https://github.com/darkstego/wakib-keys), which-key (built-in) |
+| Minibuffer completion | vertico, orderless, marginalia, consult, embark |
+| In-buffer completion | corfu, cape |
+| Git | magit, diff-hl |
+| Projects | project.el (built-in) |
+| IDE | eglot (built-in), tree-sitter via treesit-auto, flymake, quickrun |
+| Editing | avy, expand-region, multiple-cursors, yasnippet, vundo |
+| Looks | modus-vivendi-tinted theme (built-in), rainbow-delimiters |
 
 ## Bindings
 
@@ -100,6 +118,23 @@ character should be reserved for user, so as a general rule these will not
 be populated. This allows users to add their own custom shortcuts knowing
 that they won't be overwritten by future updates to Wakib.
 
+## Using Emacs as an IDE
+
+* **Language support.** Opening a source file offers to install its
+  tree-sitter grammar (needs a C compiler; answer `n` and Emacs falls
+  back to the classic mode).
+* **Language server.** Run `M-x eglot` (or Tools → Start Language
+  Server) in a project to get completion, documentation and
+  diagnostics. You need the language server for your language
+  installed; see the [Eglot manual](https://www.gnu.org/software/emacs/manual/html_mono/eglot.html)
+  for the list. To start it automatically for your languages, see
+  `refs/init-user.el.template`.
+* **Projects.** `C-e p` is the project prefix: find file (`C-e p f`),
+  search with ripgrep (`C-e p g`), switch project (`C-e p p`). A
+  Project menu appears in the menu bar whenever you are in one.
+* **Git.** `C-e g` opens Magit. Uncommitted changes are highlighted
+  in the fringe.
+* **Run code.** `F8` runs the current buffer with quickrun.
 
 ## User local changes
 
@@ -123,6 +158,42 @@ ones provided by wakib, you have two ways to do so:
    that function do something else instead then just apply remaps to
    the global-map or any active mode, for example: `(define-key
    (current-global-map) [remap undo] 'my-undo)`
+
+## Breaking Changes (2026 redesign)
+
+If you are upgrading from an older Wakib Emacs, note the following:
+
+* **Emacs 30+ is now required.** Older versions stop with an error at
+  startup.
+* **Delete your old packages when upgrading in place**: run
+  `rm -rf ~/.emacs.d/elpa` before the first start so stale packages
+  don't shadow the ones now built into Emacs.
+* **Ivy/Counsel/Company were replaced by Vertico/Consult/Corfu.**
+  Day-to-day muscle memory carries over: `C-b` switches buffers,
+  `M-x` completes commands, `M-i`/`M-k` and `M-;`/`M-:` move through
+  candidates, Tab completes in buffers and Return still inserts a
+  newline.
+* **undo-tree was replaced.** `C-z`/`C-S-z` are undo/redo (built-in),
+  and `C-e u` opens vundo, a visual undo tree, when you need to
+  recover an old branch of history.
+* **Projectile was replaced by the built-in project.el.** The prefix
+  is still `C-e p` and the common commands (`f`, `p`, `g`) are the
+  same, but projectile-specific commands are gone.
+* **The theme is now modus-vivendi-tinted** (built-in). To get a
+  different look, load any theme from `user/init-user.el`.
+* **New buffers still default to Org mode**, and Company's
+  tab-to-complete behaviour was carried over to Corfu.
+
+## Changelog
+
+* Complete redesign: Emacs 30+, modular config (`modules/`),
+  early-init.el for faster startup, Vertico/Consult/Corfu completion,
+  built-in project.el, eglot and tree-sitter support. See Breaking
+  Changes above.
+* Company no longer uses *return* for completion, but rather uses tab
+  to complete part, and tab again to select. This solves the problem
+  of not being able to insert a newline because Company mode opened
+  an autocomplete popup.
 
 ## Contribution
 
