@@ -19,3 +19,9 @@
 
 (setq inhibit-startup-screen t)
 (setq load-prefer-newer t)              ; Don't load outdated byte code
+
+;; Packages are native-compiled in the background after install; log
+;; the (harmless) compiler warnings quietly instead of popping up a
+;; buffer over what the user is doing
+(defvar native-comp-async-report-warnings-errors)
+(setq native-comp-async-report-warnings-errors 'silent)
