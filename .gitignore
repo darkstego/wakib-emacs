@@ -9,6 +9,13 @@
 /bookmarks
 /local/
 
+# runtime state (savehist, saveplace, native compilation, tree-sitter grammars)
+/history
+/places
+/eln-cache/
+/tree-sitter/
+/.mc-lists.el
+
 # omnisharp
 /.cache/
 

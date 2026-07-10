@@ -1,43 +1,93 @@
-;; Place all local configuration options here
+;; -*- lexical-binding: t -*-
 
-;; Automatically create closing parenthesis/quote
-(electric-pair-mode 1)
+;; Place all local configuration options here.
+;; Copy this file to user/init-user.el (create the user directory if
+;; needed); it is loaded last, so anything here wins over the defaults.
 
-;; Auto-save org-mode buffers
-;; This is set to only save org-mode-buffers in "~/Dropbox/org/"
+;; -------------------
+;; Theme
+;; -------------------
+;; Load a different theme (the default is modus-vivendi-tinted).
+;; Any theme package can be installed with use-package as usual.
+;; (load-theme 'modus-operandi-tinted t)   ; built-in light theme
+;; (use-package ef-themes
+;;   :config
+;;   (load-theme 'ef-dream t))
+
+;; -------------------
+;; Language Servers (eglot)
+;; -------------------
+;; Start eglot automatically for languages whose server you have
+;; installed. Hooks work for both classic and tree-sitter modes.
+;; (add-hook 'python-base-mode-hook 'eglot-ensure)
+;; (add-hook 'rust-ts-mode-hook 'eglot-ensure)
+;; (add-hook 'c-mode-common-hook 'eglot-ensure)
+
+;; -------------------
+;; Spell Checking
+;; -------------------
+;; Check spelling as you type in text buffers and code comments.
+;; (add-hook 'text-mode-hook 'flyspell-mode)
+;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;; jinx is a faster, better spell checker, but needs libenchant
+;; installed on your system (hard to set up on Windows).
+;; (use-package jinx
+;;   :hook (emacs-startup . global-jinx-mode))
+
+;; -------------------
+;; Extra Major Modes
+;; -------------------
+;; Add support for more languages by installing their mode. If Emacs
+;; ships a tree-sitter mode for the language, treesit-auto will offer
+;; to upgrade to it automatically.
+;; (use-package php-mode :defer t)
+;; (use-package elixir-mode :defer t)
+;; (use-package crystal-mode :mode "\\.cr\\'")
+;; (use-package haml-mode :mode "\\.haml\\'")
+
+;; -------------------
+;; Auto-save org buffers
+;; -------------------
+;; This is set to only save org-mode buffers in "~/Dropbox/org/"
 ;; You can adjust it to fit your needs
-(add-hook 'auto-save-hook 'save-my-org-buffers)
-(defun save-my-org-buffers()
-  (interactive)
-  (save-some-buffers t (lambda ()
-			 (and buffer-file-name
-			      (eq major-mode 'org-mode)
-			      (string= (expand-file-name "./")
-				  (expand-file-name "~/Dropbox/org/"))))))
+;; (add-hook 'auto-save-hook 'save-my-org-buffers)
+;; (defun save-my-org-buffers ()
+;;   (interactive)
+;;   (save-some-buffers t (lambda ()
+;; 			 (and buffer-file-name
+;; 			      (eq major-mode 'org-mode)
+;; 			      (string= (expand-file-name "./")
+;; 				       (expand-file-name "~/Dropbox/org/"))))))
 
+;; -------------------
+;; Visual Line Wrapping
+;; -------------------
 ;; Enable Visual Line Mode to wrap at fill column
-(use-package visual-fill-column
-  :config
-  (add-hook 'visual-line-mode-hook #'visual-fill-column-mode))
+;; (use-package visual-fill-column
+;;   :config
+;;   (add-hook 'visual-line-mode-hook #'visual-fill-column-mode))
 
+;; -------------------
+;; Terminal Emulator
+;; -------------------
 ;; terminal emulator using vterm library,
 ;; passes wakib keybindings to emulator to be used by something like
 ;; wakib-readline
-(use-package vterm
-  :config
-  (define-key vterm-mode-map [remap previous-line] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap next-line] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap left-char] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap right-char] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap backward-word] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap forward-word] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap move-beginning-of-line] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap move-end-of-line] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap backward-kill-word] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap kill-word] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap delete-backward-char] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap delete-char] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap wakib-backward-kill-line] 'vterm--self-insert)
-  (define-key vterm-mode-map [remap kill-line] 'vterm--self-insert))
+;; (use-package vterm
+;;   :config
+;;   (define-key vterm-mode-map [remap previous-line] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap next-line] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap left-char] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap right-char] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap backward-word] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap forward-word] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap move-beginning-of-line] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap move-end-of-line] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap backward-kill-word] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap kill-word] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap delete-backward-char] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap delete-char] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap wakib-backward-kill-line] 'vterm--self-insert)
+;;   (define-key vterm-mode-map [remap kill-line] 'vterm--self-insert))
 
 (provide 'init-user)
