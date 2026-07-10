@@ -16,6 +16,11 @@
 ;; is loaded, so load it before the first use-package call
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
+;; Packages downloaded on first start are byte-compiled on the spot;
+;; their compiler warnings concern package authors, not users, so keep
+;; them out of *Compile-Log* while the kit bootstraps
+(setq byte-compile-warnings nil)
+(add-hook 'emacs-startup-hook (lambda () (setq byte-compile-warnings t)))
 (use-package diminish)
 
 ;; -------------------
