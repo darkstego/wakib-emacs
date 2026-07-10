@@ -37,7 +37,11 @@
 ;; -------------------
 ;; Extra Major Modes
 ;; -------------------
-;; Languages that were dropped from the starter kit defaults.
+;; Add support for more languages by installing their mode. If Emacs
+;; ships a tree-sitter mode for the language, treesit-auto will offer
+;; to upgrade to it automatically.
+;; (use-package php-mode :defer t)
+;; (use-package elixir-mode :defer t)
 ;; (use-package crystal-mode :mode "\\.cr\\'")
 ;; (use-package haml-mode :mode "\\.haml\\'")
 

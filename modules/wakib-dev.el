@@ -69,9 +69,29 @@
 ;; available, and offer to install it (needs a C compiler) when not.
 ;; Falls back to the classic modes if the user declines.
 (use-package treesit-auto
+  ;; Skip entirely when Emacs was built without tree-sitter; the
+  ;; classic modes below then handle everything on their own
+  :if (fboundp 'treesit-parser-create)
   :config
   (setq treesit-auto-install 'prompt)
   (global-treesit-auto-mode))
+
+;; -------------------
+;; Classic Language Modes
+;; -------------------
+;; Entry points and fallbacks for popular languages whose tree-sitter
+;; mode ships with Emacs but whose classic mode does not. treesit-auto
+;; upgrades these to the ts-mode once its grammar is installed, and
+;; declining the grammar leaves a fully working classic mode.
+;; To support more languages, install their mode the same way (see
+;; refs/init-user.el.template).
+(use-package yaml-mode :defer t)
+(use-package go-mode :defer t)
+(use-package rust-mode :defer t)
+(use-package lua-mode :defer t)
+(use-package typescript-mode :defer t)
+(use-package dockerfile-mode :defer t)
+(use-package cmake-mode :defer t)
 
 ;; -------------------
 ;; diff-hl

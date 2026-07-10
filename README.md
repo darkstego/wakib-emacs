@@ -72,6 +72,7 @@ the third-party packages.
 | Git | magit, diff-hl |
 | Projects | project.el (built-in) |
 | IDE | eglot (built-in), tree-sitter via treesit-auto, flymake, quickrun |
+| Languages | everything built into Emacs, plus markdown, yaml, go, rust, lua, typescript, dockerfile, cmake |
 | Editing | avy, expand-region, multiple-cursors, yasnippet, vundo |
 | Looks | modus-vivendi-tinted theme (built-in), rainbow-delimiters |
 
