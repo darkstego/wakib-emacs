@@ -25,3 +25,8 @@
 ;; buffer over what the user is doing
 (defvar native-comp-async-report-warnings-errors)
 (setq native-comp-async-report-warnings-errors 'silent)
+
+;; Only pop up the *Warnings* buffer for errors; plain warnings are
+;; still logged there and in *Messages*, just not shoved in the
+;; user's face
+(setq warning-minimum-level :error)
