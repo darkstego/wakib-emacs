@@ -21,36 +21,38 @@ If you like these keybindings checkout the [Wakib project](https://github.com/da
 ## Core Principles
 
 * **Low friction.** The shortcuts you use everywhere (Open, Save,
-  Copy, Paste, Undo...) work here too, so moving to and from Wakib
-  Emacs costs you nothing.
-* **Fast.** Starts in a fraction of a second and stays snappy.
-* **Best of the ecosystem.** Magit, Vertico, Corfu, tree-sitter,
+  Copy, Paste, Undo...) work here too, so no steep learning curve.
+* **Fast.** Starts up quickly and stays snappy.
+* **Sensible Defaults.** Using some of the most well regarded tools in
+  the Emacs ecosystem like Magit, Vertico, Corfu, tree-sitter,
   Eglot... set up with sensible defaults so you don't have to.
-* **Editor to IDE.** Opens instantly as a text editor; turns into a
+* **Editor to IDE.** Use it as a quick text editor, or use it as a
   full IDE (completion, diagnostics, jump-to-definition) when you
   need it.
 * **Beginner friendly.** Menus show the correct shortcuts, prompts
   annotate themselves, and a which-key popup teaches you the rest.
-* **Easy to maintain.** A slim init and five small modules, built on
+* **Small.** A slim init and a few small modules, built on
   what already ships with Emacs wherever possible.
+* **User Expandable.** User modification live in their own folder
+  and can be stored in their own git repo.
 
 ## Requirements
 
-**Emacs 30 or later.** The kit leans on features that are built into
+**Emacs 30 or later.** The starter kit leans on features that are built into
 modern Emacs (use-package, eglot, tree-sitter, which-key,
 project.el), which keeps it fast and dependable.
 
 ## Installation
 
 To install this starter kit, clone this repo to your user emacs
-directory (typically `~/.emacs.d`). If you would like to save your
+directory (typically `~/config/emacs` or `~/.emacs.d`). If you would like to save your
 old configuration make sure to back up your user emacs directory by
 moving or renaming it.
 
 On Linux and MacOS the installation is simply
 
 ```
-git clone https://github.com/darkstego/wakib-emacs.git ~/.emacs.d
+git clone https://github.com/darkstego/wakib-emacs.git ~/config/emacs
 ```
 
 In the case of Windows OS then you can simply run the following in git bash
@@ -61,20 +63,6 @@ git clone https://github.com/darkstego/wakib-emacs.git ~/AppData/Roaming/.emacs.
 
 The first time emacs starts after this, it will automatically download all
 the third-party packages.
-
-## What's Inside
-
-| Area | Packages |
-|------|----------|
-| Keybindings | [wakib-keys](https://github.com/darkstego/wakib-keys), which-key (built-in) |
-| Minibuffer completion | vertico, orderless, marginalia, consult, embark |
-| In-buffer completion | corfu, cape |
-| Git | magit, diff-hl |
-| Projects | project.el (built-in) |
-| IDE | eglot (built-in), tree-sitter via treesit-auto, flymake, quickrun |
-| Languages | everything built into Emacs, plus markdown, yaml, go, rust, lua, typescript, dockerfile, cmake |
-| Editing | avy, expand-region, multiple-cursors, yasnippet, vundo |
-| Looks | modus-vivendi-tinted theme (built-in), rainbow-delimiters |
 
 ## Bindings
 
@@ -160,7 +148,22 @@ ones provided by wakib, you have two ways to do so:
    the global-map or any active mode, for example: `(define-key
    (current-global-map) [remap undo] 'my-undo)`
 
-## Breaking Changes (2026 redesign)
+## What's Inside
+
+| Area | Packages |
+|------|----------|
+| Keybindings | [wakib-keys](https://github.com/darkstego/wakib-keys), which-key |
+| Minibuffer completion | vertico, orderless, marginalia, consult, embark |
+| In-buffer completion | corfu, cape |
+| Git | magit, diff-hl |
+| Projects | project.el |
+| IDE | eglot, tree-sitter via treesit-auto, flymake, quickrun |
+| Languages | everything built into Emacs, plus markdown, yaml, go, rust, lua, typescript, dockerfile, cmake |
+| Editing | avy, expand-region, multiple-cursors, yasnippet, vundo |
+| Looks | modus-vivendi-tinted theme, rainbow-delimiters |
+
+
+## Breaking Changes (2.0.0 redesign)
 
 If you are upgrading from an older Wakib Emacs, note the following:
 
