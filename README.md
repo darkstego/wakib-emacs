@@ -45,14 +45,14 @@ project.el), which keeps it fast and dependable.
 ## Installation
 
 To install this starter kit, clone this repo to your user emacs
-directory (typically `~/config/emacs` or `~/.emacs.d`). If you would like to save your
+directory (typically `~/.config/emacs` or `~/.emacs.d`). If you would like to save your
 old configuration make sure to back up your user emacs directory by
 moving or renaming it.
 
 On Linux and MacOS the installation is simply
 
 ```
-git clone https://github.com/darkstego/wakib-emacs.git ~/config/emacs
+git clone https://github.com/darkstego/wakib-emacs.git ~/.config/emacs
 ```
 
 In the case of Windows OS then you can simply run the following in git bash
