@@ -3,6 +3,11 @@
 ;; Development tools: git, project management, LSP, tree-sitter and
 ;; everything else that turns Emacs into an IDE.
 
+;; Read subprocess output in large chunks; language servers stream a
+;; lot of JSON and the small default chokes them
+(setq read-process-output-max (* 4 1024 1024))
+(setq process-adaptive-read-buffering nil)
+
 ;; -------------------
 ;; Magit
 ;; -------------------
@@ -55,12 +60,22 @@
   :ensure nil
   :defer t
   :config
-  (setq eglot-autoshutdown t))
+  (setq eglot-autoshutdown t)           ; stop the server with its last buffer
+  (setq eglot-sync-connect 0)           ; never block the UI while connecting
+  (setq eglot-report-progress nil)      ; no server spam in the minibuffer
+  ;; Don't log every JSON-RPC message; it costs real memory and time
+  (setq eglot-events-buffer-config '(:size 0 :format short))
+  ;; Keep LSP features when jumping to definitions outside the project
+  (setq eglot-extend-to-xref t))
 
 (define-key global-map [menu-bar tools eglot]
 	    '(menu-item "Start Language Server (Eglot)" eglot
 			:help "IDE features for the current buffer's language"
 			:enable (derived-mode-p 'prog-mode)))
+
+;; Choose among multiple definitions in the minibuffer instead of a
+;; separate window
+(setq xref-show-definitions-function #'xref-show-definitions-completing-read)
 
 ;; -------------------
 ;; Tree-sitter

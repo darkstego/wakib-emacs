@@ -19,8 +19,9 @@
 ;; Packages downloaded on first start are byte-compiled on the spot;
 ;; their compiler warnings concern package authors, not users, so keep
 ;; them out of *Compile-Log* while the kit bootstraps
-(setq byte-compile-warnings nil)
-(add-hook 'emacs-startup-hook (lambda () (setq byte-compile-warnings t)))
+(unless init-file-debug
+  (setq byte-compile-warnings nil)
+  (add-hook 'emacs-startup-hook (lambda () (setq byte-compile-warnings t))))
 (use-package diminish)
 
 ;; -------------------
@@ -43,6 +44,10 @@
 ;; Machine-local settings written by Customize
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t t)
+
+;; Tell early-init.el's stray-~/.emacs check that init.el really ran
+(defvar wakib--init-loaded)
+(setq wakib--init-loaded t)
 
 ;; User overrides, loaded last so they win.
 ;; See refs/init-user.el.template for how to set up user/init-user.el

@@ -6,6 +6,22 @@
 ;; command that uses completing-read benefits automatically.
 
 ;; -------------------
+;; Minibuffer
+;; -------------------
+;; Allow commands that read from the minibuffer while already in the
+;; minibuffer (e.g. C-b inside a search), and show the nesting depth
+(setq enable-recursive-minibuffers t)
+(minibuffer-depth-indicate-mode 1)
+
+;; Keep the cursor out of the read-only prompt text
+(setq minibuffer-prompt-properties
+      '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+;; Hide commands from M-x that don't apply to the current buffer
+(setq read-extended-command-predicate #'command-completion-default-include-p)
+
+;; -------------------
 ;; Vertico
 ;; -------------------
 (use-package vertico
@@ -64,6 +80,10 @@
 ;; -------------------
 ;; Corfu
 ;; -------------------
+;; The default ispell completion source errors in text buffers when no
+;; spell dictionary is installed; cape-dabbrev (below) covers words
+(setq text-mode-ispell-word-completion nil)
+
 ;; In-buffer completion popup (replaces company)
 (use-package corfu
   :config

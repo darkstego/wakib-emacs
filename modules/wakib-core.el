@@ -59,10 +59,47 @@
 (when (display-graphic-p)
   (pixel-scroll-precision-mode 1))      ; smooth scrolling
 
+(setq use-short-answers t)              ; y/n instead of typing "yes"
+(setq ring-bell-function #'ignore)      ; no beeping
+
+;; Don't recenter the window whenever point scrolls out of it; move
+;; just enough to keep it visible, and keep the screen still when
+;; paging up and down
+(setq scroll-conservatively 20)
+(setq scroll-preserve-screen-position t)
+(setq auto-window-vscroll nil)
+(setq scroll-error-top-bottom t)
+
+;; Deleting text in Emacs should not clobber what was copied in
+;; another program: push it onto the kill ring first so C-S-v
+;; (paste history) still finds it
+(setq save-interprogram-paste-before-kill t)
+(setq kill-do-not-save-duplicates t)
+
+(setq delete-by-moving-to-trash t)      ; deleted files go to the trash
+(setq vc-follow-symlinks t)             ; follow symlinks without asking
+(setq uniquify-buffer-name-style 'forward) ; same-named buffers show their dir
+(setq help-window-select t)             ; focus help windows when opened
+
+;; Ediff: everything in one frame, diffs side by side
+(setq ediff-window-setup-function 'ediff-setup-windows-plain
+      ediff-split-window-function 'split-window-horizontally)
+
 ;; Disable backup and lockfile
 ;; I hate browsing directories and seeing 'Emacs was Here' everywhere
 (setq create-lockfiles nil
       make-backup-files nil)
+
+;; Auto-save (crash recovery) stays on, but collect the #file# saves
+;; here instead of littering every directory with them
+(setq auto-save-list-file-prefix
+      (expand-file-name "auto-save/" user-emacs-directory))
+(unless (file-exists-p auto-save-list-file-prefix)
+  (with-file-modes #o700
+    (make-directory auto-save-list-file-prefix t)))
+(setq auto-save-file-name-transforms
+      `((".*" ,auto-save-list-file-prefix sha1)))
+(setq kill-buffer-delete-auto-save-files t)
 
 (setq frame-title-format '((:eval (buffer-name)) " [%+] Wakib Emacs"))
 
