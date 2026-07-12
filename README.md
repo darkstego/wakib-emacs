@@ -64,6 +64,19 @@ git clone https://github.com/darkstego/wakib-emacs.git ~/AppData/Roaming/.emacs.
 The first time emacs starts after this, it will automatically download all
 the third-party packages.
 
+## Updating
+
+To update the starter kit, pull the latest version from inside your
+emacs directory:
+
+```
+git pull
+```
+
+Updates never touch your `user/` directory or `custom.el`, so your
+own configuration and customizations are safe. To also update the
+third-party packages, run `M-x package-upgrade-all` inside Emacs.
+
 ## Bindings
 
 CTRL
