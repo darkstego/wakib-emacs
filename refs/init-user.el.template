@@ -15,6 +15,31 @@
 ;;   (load-theme 'ef-dream t))
 
 ;; -------------------
+;; Frame Size
+;; -------------------
+;; The default frame is 130x60 characters (set in early-init.el). If
+;; that isn't working well on your monitor, this sizes frames from the
+;; monitor instead: 90% of its height, with the width tracking the
+;; monitor's HEIGHT (not width) so frames keep a page-like shape even
+;; on ultrawide monitors; capped for portrait ones.
+;; (when (display-graphic-p)
+;;   (let* ((attrs (frame-monitor-attributes))
+;; 	 ;; pgtk reports monitor sizes multiplied by the display scale
+;; 	 ;; factor, but frame sizes are in unscaled units; undo that
+;; 	 (scale (float (or (alist-get 'scale-factor attrs) 1)))
+;; 	 (workarea (alist-get 'workarea attrs))
+;; 	 (wa-w (round (/ (nth 2 workarea) scale)))
+;; 	 (wa-h (round (/ (nth 3 workarea) scale)))
+;; 	 (width (min (round (* 0.8 wa-h)) (round (* 0.95 wa-w))))
+;; 	 (height (round (* 0.9 wa-h))))
+;;     (setq default-frame-alist (assq-delete-all 'width default-frame-alist))
+;;     (setq default-frame-alist (assq-delete-all 'height default-frame-alist))
+;;     (push `(height . (text-pixels . ,height)) default-frame-alist)
+;;     (push `(width . (text-pixels . ,width)) default-frame-alist)))
+;; Or simply open maximized:
+;; (push '(fullscreen . maximized) default-frame-alist)
+
+;; -------------------
 ;; Language Servers (eglot)
 ;; -------------------
 ;; Start eglot automatically for languages whose server you have

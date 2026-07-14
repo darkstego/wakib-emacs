@@ -41,6 +41,12 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 (setq frame-inhibit-implied-resize t)
 
+;; A roomier frame than the tiny 80x36-character legacy default. Sized
+;; in characters so it scales with the font; if it doesn't suit your
+;; monitor, see the Frame Size section in refs/init-user.el.template
+(push '(width . 130) default-frame-alist)
+(push '(height . 60) default-frame-alist)
+
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-echo-area-message user-login-name)
 (setq load-prefer-newer t)              ; Don't load outdated byte code
