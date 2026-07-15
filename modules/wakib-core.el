@@ -106,16 +106,20 @@
 ;; -------------------
 ;; Startup Buffer
 ;; -------------------
-(setq-default major-mode 'org-mode)
-(setq-default initial-scratch-message ";; Emacs lisp scratch buffer. Happy hacking.\n\n")
+(setq-default initial-major-mode 'org-mode)
+(setq-default initial-scratch-message "# Org-mode Disposable Scratch Pad for Temporary Notes.\n\n")
 
-;; Start with a blank buffer unless Emacs was started with a file to open.
-;; Otherwise causes split window when opening file from command line or GUI.
+;; Start with a blank org-mode buffer unless Emacs was started with a
+;; file to open (otherwise it causes a split window). Only this buffer
+;; defaults to org: files with no recognizable mode stay fundamental.
 (unless (< 1 (length command-line-args))
   (setq initial-buffer-choice
 	(lambda (&optional _)
 	  (let ((buf (generate-new-buffer "untitled")))
-	    (set-buffer-major-mode buf)
+	    (with-current-buffer buf
+	      (org-mode)
+	      ;; Offer to save on exit, like C-n buffers
+	      (setq buffer-offer-save t))
 	    buf))))
 
 (provide 'wakib-core)
