@@ -198,7 +198,7 @@ If you are upgrading from an older Wakib Emacs, note the following:
   same, but projectile-specific commands are gone.
 * **The theme is now modus-vivendi-tinted** (built-in). To get a
   different look, load any theme from `user/init-user.el`.
-* **New buffers still default to Org mode**, and Company's
+* **The startup buffer defaults to Org mode**, and Company's
   tab-to-complete behaviour was carried over to Corfu.
 
 ## Changelog
