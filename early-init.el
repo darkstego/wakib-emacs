@@ -44,8 +44,8 @@
 ;; A roomier frame than the tiny 80x36-character legacy default. Sized
 ;; in characters so it scales with the font; if it doesn't suit your
 ;; monitor, see the Frame Size section in refs/init-user.el.template
-(push '(width . 130) default-frame-alist)
-(push '(height . 60) default-frame-alist)
+(push '(width . 120) default-frame-alist)
+(push '(height . 50) default-frame-alist)
 
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-echo-area-message user-login-name)
