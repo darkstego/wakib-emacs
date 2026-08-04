@@ -17,7 +17,7 @@
 ;; -------------------
 ;; Frame Size
 ;; -------------------
-;; The default frame is 130x60 characters (set in early-init.el). If
+;; The default frame is 120x50 characters (set in early-init.el). If
 ;; that isn't working well on your monitor, this sizes frames from the
 ;; monitor instead: 90% of its height, with the width tracking the
 ;; monitor's HEIGHT (not width) so frames keep a page-like shape even
