@@ -21,13 +21,22 @@ rm -f *.elc modules/*.elc
 emacs --init-directory .
 ```
 
-Startup time: `M-x emacs-init-time`; target is well under 0.5s warm. Final verification is manual: launch Emacs and exercise the affected feature.
+Startup time: `M-x emacs-init-time`; target is well under 0.5s warm. Final verification is manual: launch Emacs and exercise the affected feature. `emacs --debug-init` re-enables all the warnings that early-init.el/init.el silence — use it when debugging startup issues.
+
+For scripted assertions, run tty Emacs under `script -qec "emacs -nw --init-directory . -l testfile.el" /dev/null` with a `run-at-time` timer that writes results to a file and calls `kill-emacs`. Note `-l` counts as a command-line argument, so the no-arg `untitled`-buffer path is skipped; test that path with a temporary `user/init-user.el` instead (it must end in `(provide 'init-user)`, or the `require` fails and startup state is misleading).
+
+## Branches and Status
+
+- **`dev`** is the working branch — all changes land here first. It is the only branch carrying `CLAUDE.md` and `AGENTS.md`; these must never reach `master` (master is what users clone as their `~/.emacs.d`).
+- **`master`** is the user-facing branch. The owner moves changes over from dev himself (currently as separate commits, so hashes differ between branches — compare content, not history, when checking sync).
+- v2.0.0 (the Emacs 30+ redesign) is released. Since then: first-install warning silencing, a defaults/tuning sweep inspired by minimal-emacs.d, the 130x60 frame default, and org-mode scoping to startup/scratch buffers.
+- Known open item: over ssh (no `COLORTERM=truecolor`) the modus-vivendi-tinted background `#0d0e1c` approximates to blue in 256-color terminals; a fallback to plain modus-vivendi for non-truecolor displays was planned but not implemented.
 
 ## Architecture
 
-- **`early-init.el`** — frame settings and GC deferral only; loaded before the GUI and package system.
+- **`early-init.el`** — loaded before the GUI and package system: frame settings (130x60 default size, no tool bar), startup speedups (GC deferral, `file-name-handler-alist` trick with restore-and-merge on `emacs-startup-hook`), warning silencing (native-comp and `*Warnings*` popups; `emacs --debug-init` un-silences everything), and a stray-`~/.emacs` check that errors with instructions if Emacs loaded `~/.emacs` instead of this directory.
 - **`init.el`** — slim orchestrator: Emacs 30 version gate, package archives, load-path, then requires the five modules in order (order matters — `wakib-core` enables the wakib keymaps later modules attach bindings to), then `custom.el` and user overrides.
-- **`modules/wakib-core.el`** — wakib-keys, CUA selection, undo (built-in `undo-redo` + vundo), better built-in defaults (savehist, recentf, save-place, electric-pair...).
+- **`modules/wakib-core.el`** — wakib-keys, CUA selection, undo (built-in `undo-redo` + vundo), better built-in defaults (savehist, recentf, save-place, electric-pair, scrolling, trash, auto-saves redirected into `auto-save/`...). Org-mode is deliberately scoped to the startup `untitled` buffer and `*scratch*` only — files with no recognizable mode must stay `fundamental-mode`.
 - **`modules/wakib-ui.el`** — theme (built-in modus-vivendi-tinted), menu-bar items, which-key, ace-window.
 - **`modules/wakib-completion.el`** — vertico/orderless/marginalia/consult/embark (minibuffer) + corfu/cape (in-buffer).
 - **`modules/wakib-editing.el`** — avy, expand-region, multiple-cursors, yasnippet, flyspell-correct, org/markdown.
