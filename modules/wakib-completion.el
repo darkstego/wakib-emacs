@@ -100,6 +100,8 @@
   ;; inserts a newline so the popup never blocks typing
   (define-key corfu-map (kbd "RET") nil)
   (define-key corfu-map (kbd "<return>") nil)
+  (define-key corfu-map [remap next-line] nil)
+  (define-key corfu-map [remap previous-line] nil)
   (define-key corfu-map (kbd "TAB") 'corfu-complete)
   (define-key corfu-map (kbd "<tab>") 'corfu-complete))
 

@@ -203,6 +203,10 @@ If you are upgrading from an older Wakib Emacs, note the following:
 
 ## Changelog
 
+* Disabled next line and previous line movement for autocomplete under
+  Corfu, use Wakib next and previous instead. Autocomplete taking up
+  movement keys can get annoying sometimes and since there are other
+  shortcuts that exist for this specific purpose better to use those.
 * Complete redesign: Emacs 30+, modular config (`modules/`),
   early-init.el for faster startup, Vertico/Consult/Corfu completion,
   built-in project.el, eglot and tree-sitter support. See Breaking
